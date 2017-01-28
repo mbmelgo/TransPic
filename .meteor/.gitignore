@@ -1,1 +1,7 @@
-local
+local/build
+local/bundler-cache
+local/dev_bundle
+local/isopacks
+local/plugin-cache
+local/shell
+local/resolver-result-cache.json

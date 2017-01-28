@@ -5,7 +5,8 @@
   "scripts": {
     "test": "mocha .scripts/mocha_boot.js client/**/tests/**/*.js --compilers js:babel-core/register",
     "storybook": "start-storybook -p 9001",
-    "start": "set MONGO_URL=mongodb://localhost:27017/thesis && meteor",
+    "start": "meteor run --port 4000",
+    "ubuntu": "set MONGO_URL=mongodb://localhost:27017/thesis; meteor run --port 4000",
     "mongodb": "C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe"
   },
   "repository": {
