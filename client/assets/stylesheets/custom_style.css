@@ -1,0 +1,59 @@
+html {
+    font-size: 10px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    height: 100%;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+    height: 100%;
+}
+
+div#react-root {
+    height: 100%;
+}
+
+div#topmost {
+    height: 100%;
+}
+
+div#main-layout {
+    height: 100%;
+    /*background-image: url('https://c2.staticflickr.com/4/3246/2313474428_6ff9749ae1_b.jpg');*/
+    /*background-image: url('/images/bg.jpg');*/
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+#popOut{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#header{
+  position: fixed;
+  text-align: left;
+  padding-left: 23%;
+  margin: 0 0 0 0;
+  z-index: 1;
+  background-color: #1E1F26;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 100%;
+  font-family: 'Slabo 27px', serif !important;
+}
+
+#nav-out{
+  margin-bottom: 10px;
+}
+
+#brandLogo{
+  width: 175px;
+}
+
+#lgbtn:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
