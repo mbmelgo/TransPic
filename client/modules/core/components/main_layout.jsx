@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Layout = ({content = () => null }) => (
-  <div>
-    <div>
+  <div id="topmost">
+    <div id="main-layout">
       {content()}
     </div>
   </div>

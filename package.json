@@ -5,7 +5,7 @@
   "scripts": {
     "test": "mocha .scripts/mocha_boot.js client/**/tests/**/*.js --compilers js:babel-core/register",
     "storybook": "start-storybook -p 9001",
-    "start": "set MONGO_URL='mongodb://localhost:27017/test' && meteor",
+    "start": "set MONGO_URL=mongodb://localhost:27017/thesis && meteor",
     "mongodb": "C:/Program Files/MongoDB/Server/3.4/bin/mongod.exe"
   },
   "repository": {
@@ -16,6 +16,8 @@
   "license": "ISC",
   "dependencies": {
     "mantra-core": "^1.2.0",
+    "meteor-node-stubs": "^0.2.5",
+    "node-simple-schema": "0.0.4",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-komposer": "^1.3.0",
