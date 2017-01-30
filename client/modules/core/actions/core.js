@@ -14,8 +14,20 @@ export default {
 
     Meteor.call("addUser",formData, function (err){
       if(err) return LocalState.set('ACCOUNT_ERROR',"Server Error: Account can't be created");
-      else { FlowRouter.go('/signup');}
+      else { FlowRouter.go('/admin_home');}
     });
+  },
+
+  signinUser({Meteor, LocalState, FlowRouter}, formData){
+    if(!formData.username)return LocalState.set('ACCOUNT_ERROR','Username is Required');
+    if(!formData.password)return LocalState.set('ACCOUNT_ERROR','Password is Required');
+
+    LocalState.set('ACCOUNT_ERROR', null);
+
+    Meteor.loginWithPassword(formData.username,formData.password, (err) => {
+      if (err) {return LocalState.set('ACCOUNT_ERROR',err.message);}
+      FlowRouter.go('/admin_home');
+    })
   },
 
 

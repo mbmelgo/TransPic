@@ -1,4 +1,4 @@
-import {User} from '/lib/collections';
+import {Users} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 import {Accounts} from 'meteor/accounts-base';
@@ -13,7 +13,7 @@ export default function () {
   Meteor.methods({
     'addUser'(formData) {
         check(formData, Object);
-        
+
         const profile = formData.profile;
 
         var userDetails = {

@@ -29,31 +29,63 @@ div#main-layout {
     background-attachment: fixed;
 }
 
-#popOut{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+#outer {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
-#header{
-  position: fixed;
-  text-align: left;
-  padding-left: 23%;
-  margin: 0 0 0 0;
-  z-index: 1;
-  background-color: #1E1F26;
-  padding-top: 10px;
-  padding-bottom: 10px;
+#popOut{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#nav-header{
   width: 100%;
-  font-family: 'Slabo 27px', serif !important;
 }
 
 #nav-out{
   margin-bottom: 10px;
+  margin-left: 1%;
 }
 
 #brandLogo{
   width: 175px;
 }
 
+#lgbtn{
+  margin-left: 1%;
+}
+
 #lgbtn:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#labelSignUp{
+  text-align: right;
+  font-family: 'Slabo 27px', serif !important;
+  margin-top: 1.25%;
+}
+
+#errorLabel{
+  text-align: center;
+  font-family: 'Slabo 27px', serif !important;
+  margin-top: 1.25%;
+  color: red;
+}
+
+#btn{
+  margin-left: 10px;
+  border-width: 2px;
+  border-color: black;
+}
+
+#btn:hover{
+  margin-left: 10px;
+  border-width: 2px;
+  border-color: black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
