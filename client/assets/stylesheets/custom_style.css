@@ -89,3 +89,30 @@ div#main-layout {
   border-color: black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+#innerSignup {
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+
+#labelCategory{
+  text-align: right;
+  font-family: 'Slabo 27px', serif !important;
+  margin-top: 2%;
+}
+
+#searchOpt{
+  text-align: center;
+  margin-top: 1.1%;
+}
+
+#topbar{
+  margin-top: .8%;
+}
+
+#optbtn:hover{
+  border-width: 2px;
+  border-color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

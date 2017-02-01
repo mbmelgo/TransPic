@@ -4,7 +4,7 @@ import {mount} from 'react-mounter';
 import MainLayout from './components/main_layout.jsx';
 import Signup from './containers/signup.js';
 import Signin from './containers/signin.js';
-import AdminHome from './containers/admin_home.js';
+import AdminHome from './containers/adminhome.js';
 
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
@@ -47,7 +47,8 @@ export default function (injectDeps, {FlowRouter}) {
 
   function authenticate(){
     if(!Meteor.userId()){
-      FlowRouter.go('/')
+      console.log("NOT AUTHENTICATED");
+      FlowRouter.go('/signin')
     }
   }
 }

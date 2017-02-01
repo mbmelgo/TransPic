@@ -53,7 +53,11 @@ class Signup extends React.Component {
               <a className="navbar-brand" href="#" id="nav-out">
                 <img alt="Brand" src="https://s10.postimg.org/b9n3rh4rt/Logo_Makr.png" id="brandLogo"/>
               </a>
-              <a href="/translate" id="nav-out"><button type="button" className="btn btn-success navbar-btn pull-right" id='lgbtn'>TRANSLATE</button></a>
+              <a href="/admin_home" id="nav-out">
+                <button type="button" className="btn btn-success navbar-btn pull-right" id='lgbtn'>
+                  <span className="glyphicon glyphicon-home" aria-hidden="true"> Home</span>
+                </button>
+              </a>
               </div>
           </div>
         </nav>

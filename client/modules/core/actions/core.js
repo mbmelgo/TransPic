@@ -30,6 +30,11 @@ export default {
     })
   },
 
+  signoutUser({Meteor, FlowRouter}){
+    Meteor.logout();
+    FlowRouter.go('/signin');
+  },
+
 
   clearAccountErrors({LocalState}){
     return LocalState.set({"ACCOUNT_ERROR": null});
