@@ -35,7 +35,6 @@ export default {
     FlowRouter.go('/signin');
   },
 
-
   clearAccountErrors({LocalState}){
     return LocalState.set({"ACCOUNT_ERROR": null});
   },

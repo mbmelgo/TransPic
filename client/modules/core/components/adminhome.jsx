@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchResult from '../containers/searchresult.js';
 
 class Adminhome extends React.Component {
   constructor(props) {
@@ -20,8 +21,26 @@ class Adminhome extends React.Component {
     LocalState.set({wordSelected:false});
   }
 
-  render() {
+  searchItem(){
     const {LocalState} = this.props;
+    const {selectLangauge,searchItem} = this.refs;
+    var searchLanguage = "english";
+    var wordSelected = true;
+    if (selectLangauge.value != "false") {
+      searchLanguage = selectLangauge.value;
+    }
+    if (!LocalState.get('wordSelected')) {
+      wordSelected = false;
+    }
+    LocalState.set({
+      searchLanguage: searchLanguage,
+      searchItem: searchItem.value,
+      wordSelected: wordSelected
+    });
+  }
+
+  render() {
+    const {results, LocalState} = this.props;
     return (
       <div id="outer">
         <nav className="navbar navbar-default" >
@@ -39,7 +58,7 @@ class Adminhome extends React.Component {
             <div className="input-group">
               <input type="text" className="form-control" placeholder="Search for..." ref="searchItem"/>
               <span className="input-group-btn">
-                <button className="btn btn-default" type="button">
+                <button className="btn btn-default" type="button" onClick={this.searchItem.bind(this)}>
                   <span className="glyphicon glyphicon-search" aria-hidden="true"> Search</span>
                 </button>
               </span>
@@ -115,6 +134,7 @@ class Adminhome extends React.Component {
         : <button type="button" className="btn btn-primary navbar-btn pull-right col-lg-2" id='optbtn' >Add New Category</button>
         }
         </div>
+        <SearchResult searchItem={LocalState.get('searchItem')} searchLanguage={LocalState.get('searchLanguage')} wordSelected={LocalState.get('wordSelected')}/>
       </div>
     );
   }
