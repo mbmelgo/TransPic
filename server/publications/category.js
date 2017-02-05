@@ -8,4 +8,8 @@ export default function () {
     query[searchLanguage] = searchItem;
     return Category.find(query);
   });
+
+  Meteor.publish('getAllCategory', function () {
+    return Category.find({});
+  });
 }

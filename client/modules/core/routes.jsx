@@ -5,6 +5,7 @@ import MainLayout from './components/main_layout.jsx';
 import Signup from './containers/signup.js';
 import Signin from './containers/signin.js';
 import AdminHome from './containers/adminhome.js';
+import AddTranslation from './containers/addtranslation.js';
 
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
@@ -41,6 +42,16 @@ export default function (injectDeps, {FlowRouter}) {
     action() {
       mount(MainLayoutCtx, {
         content: () => (<AdminHome />)
+      });
+    }
+  });
+
+  FlowRouter.route('/add_translation', {
+    name: 'add_translation',
+    triggersEnter: [authenticate],
+    action() {
+      mount(MainLayoutCtx, {
+        content: () => (<AddTranslation />)
       });
     }
   });

@@ -1,9 +1,9 @@
 import {useDeps, composeAll, composeWithTracker, compose} from 'mantra-core';
 
-import Adminhome from '../components/adminhome.jsx';
+import Addtranslation from '../components/addtranslation.jsx';
 
 export const composer = ({context}, onData) => {
-  const {Meteor, LocalState} = context();
+  const {Meteor, LocalState,Collections} = context();
   const translationLanguages = [
     {_id:"afrikaans",name: "Afrikaans"},
     {_id:"albanian",name: "Albanian"},
@@ -146,20 +146,20 @@ export const composer = ({context}, onData) => {
     {_id:"zapotec",name: "Zapotec"},
     {_id:"zulu",name: "Zulu"}
   ];
-
-  if (Meteor.subscribe("getUser", Meteor.userId()).ready()) {
-    const user = Meteor.users.find({}).fetch();
-    onData(null, {user,LocalState, translationLanguages});
+  if (Meteor.subscribe("getAllCategory").ready()) {
+    const allCategory = Collections.Category.find({}).fetch();
+    onData(null, {LocalState,allCategory,translationLanguages});
   }
 };
 
 export const depsMapper = (context, actions) => ({
+  addTranslation: actions.core.addTranslation,
   signoutUser: actions.core.signoutUser,
-  goToAddTranslation: actions.core.goToAddTranslation,
+  clearAddTranslationErrors: actions.core.clearAddTranslationErrors,
   context: () => context
 });
 
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(Adminhome);
+)(Addtranslation);

@@ -132,3 +132,60 @@ div#main-layout {
   width: 75%;
   height: 85%;
 }
+
+
+#addPopOut{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-left: auto;
+  margin-right: auto;
+  height: 85%;
+}
+
+#addBox {
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+  height: 85%;
+}
+
+#addbtn{
+  margin-left: 31%;
+}
+
+#addbtn:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#verticalLine{
+  border-right: 1px solid #ccc;
+  height: 300px;
+}
+
+#third{
+  height: 300px;
+}
+
+#addsavebtn{
+  margin-left: 47%;
+}
+
+#addsavebtn:hover{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#labelAddTranslation{
+  text-align: left;
+  font-family: 'Slabo 27px', serif !important;
+  margin-top: 3%;
+  width: 50%;
+}
+
+#inputAddTranslation{
+  width: 50%;
+}
+
+#addTranslationFormGroup{
+  height: 250px;
+  max-height: 250px;
+  overflow-y: scroll;
+}

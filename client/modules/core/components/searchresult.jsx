@@ -16,7 +16,6 @@ class Searchresult extends React.Component {
 
   render() {
     const {LocalState,results} = this.props;
-    console.log(results);
     return (
       <div id="searchBox">
         <div className="panel panel-success" id="searchPopOut">
