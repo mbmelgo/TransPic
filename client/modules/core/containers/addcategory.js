@@ -1,9 +1,9 @@
 import {useDeps, composeAll, composeWithTracker, compose} from 'mantra-core';
-
-import Adminhome from '../components/adminhome.jsx';
+import {Bert} from 'meteor/themeteorchef:bert';
+import Addcategory from '../components/addcategory.jsx';
 
 export const composer = ({context}, onData) => {
-  const {Meteor, LocalState,Collections} = context();
+  const {Meteor, Collections, LocalState} = context();
   const translationLanguages = [
     {_id:"afrikaans",name: "Afrikaans"},
     {_id:"albanian",name: "Albanian"},
@@ -146,37 +146,22 @@ export const composer = ({context}, onData) => {
     {_id:"zapotec",name: "Zapotec"},
     {_id:"zulu",name: "Zulu"}
   ];
-
-  var searchItem = "";
-  var searchLanguage = "afrikaans";
-  var wordSelected = LocalState.get('wordSelected');
-  LocalState.get("searchLanguage") ? searchLanguage = LocalState.get('searchLanguage') : searchLanguage = "afrikaans";
-  LocalState.get("searchItem") ? searchItem = LocalState.get('searchItem') : searchItem = "";
-  if (Meteor.subscribe("searchCategory", searchItem,searchLanguage).ready() &&
-      Meteor.subscribe("searchTranslation", searchItem,searchLanguage).ready()) {
-      var results = [];
-      var query = {};
-      query[searchLanguage] = searchItem;
-      if (searchItem.length > 0) {
-        wordSelected ?
-          results = Collections.Translation.find(query).fetch() :
-          results = Collections.Category.find(query).fetch()
-      }
-      onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages});
-  }
+  const image = LocalState.get('image');
+  const error = LocalState.get('ADD_CATEGORY_ERROR');
+  onData(null, {error,translationLanguages,image});
 };
 
 export const depsMapper = (context, actions) => ({
+  addCategory: actions.core.addCategory,
+  addImage: actions.core.addImage,
+  removeImage: actions.core.removeImage,
+  goBackHome: actions.core.goBackHome,
   signoutUser: actions.core.signoutUser,
-  toggleWordCategorySelection: actions.core.toggleWordCategorySelection,
-  setSearch: actions.core.setSearch,
-  goToAddTranslation: actions.core.goToAddTranslation,
-  goToAddCategory: actions.core.goToAddCategory,
-  clearSearchErrors: actions.core.clearSearchErrors,
+  clearAddCategoryErrors: actions.core.clearAddCategoryErrors,
   context: () => context
 });
 
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(Adminhome);
+)(Addcategory);

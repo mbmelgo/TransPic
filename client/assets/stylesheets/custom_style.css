@@ -58,9 +58,13 @@ div#main-layout {
 
 #lgbtn{
   margin-left: 1%;
+  border-width: 2px;
+  border-color: black;
 }
 
 #lgbtn:hover{
+  border-width: 2px;
+  border-color: black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -112,6 +116,11 @@ div#main-layout {
   margin-left: -1.5%;
 }
 
+#optbtn{
+  border-width: 2px;
+  border-color: black;
+}
+
 #optbtn:hover{
   border-width: 2px;
   border-color: black;
@@ -150,9 +159,13 @@ div#main-layout {
 
 #addbtn{
   margin-left: 31%;
+  border-width: 2px;
+  border-color: black;
 }
 
 #addbtn:hover{
+  border-width: 2px;
+  border-color: black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -163,14 +176,6 @@ div#main-layout {
 
 #third{
   height: 300px;
-}
-
-#addsavebtn{
-  margin-left: 47%;
-}
-
-#addsavebtn:hover{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #labelAddTranslation{
@@ -188,4 +193,80 @@ div#main-layout {
   height: 250px;
   max-height: 250px;
   overflow-y: scroll;
+}
+
+#addImage{
+  margin-left: 5%;
+  border-width: 2px;
+  border-color: black;
+  display: block;
+  margin: auto;
+  width: 25%;
+}
+
+#addImage:hover{
+  margin-left: 5%;
+  border-width: 2px;
+  border-color: black;
+  display: block;
+  margin: auto;
+  width: 25%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#image {
+  width: 50%;
+  height: 80%;
+  display: block;
+  margin-top: 6%;
+}
+
+#imageThmbnail{
+  height: 250px;
+}
+
+#imageT {
+  width: 60%;
+  height: 70%;
+  display: block;
+  margin-top: 13%;
+}
+
+#addImageT{
+  margin-left: 5%;
+  border-width: 2px;
+  border-color: black;
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+
+#addImageT:hover{
+  margin-left: 5%;
+  border-width: 2px;
+  border-color: black;
+  display: block;
+  margin: auto;
+  width: 50%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

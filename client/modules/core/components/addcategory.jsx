@@ -1,13 +1,13 @@
 import React from 'react';
 
-class Addtranslation extends React.Component {
+class Addcategory extends React.Component {
   constructor(props) {
     super(props);
   }
 
   componentWillUnmount(){
-    const {clearAddTranslationErrors} = this.props;
-    clearAddTranslationErrors();
+    const {clearAddCategoryErrors} = this.props;
+    clearAddCategoryErrors();
   }
 
   signout() {
@@ -20,8 +20,8 @@ class Addtranslation extends React.Component {
     goBackHome();
   }
 
-  addTranslation(){
-    const {addTranslation,image,allCategory} = this.props;
+  addCategory(){
+    const {addCategory,image} = this.props;
     const {afrikaans,albanian,amharic,arabic,aramaniac,armenian,assamese,aymara,azerbaijani,balochi,
     bamanankan,bashkort,basque,belarusan,bengali,bhojpuri,bislama,bosnian,brahui,bulgarian,
     burmese,cantonese,catalan,cebuano,chechen,cherokee,croatian,czech,dakota,danish,dari,
@@ -35,17 +35,8 @@ class Addtranslation extends React.Component {
     swedish,tachelhit,tagalog,tajiki,tamil,tatar,telugu,thai,tibetic,tigrigna,tokPisin,turkish,turkmen,
     ukrainian,urdu,uyghur,uzbek,vietnamese,warlpiri,welsh,wolof,xhosa,yakut,yiddish,yoruba,yucatec,
     zapotec,zulu} = this.refs;
-
-    var categoryId = [];
-    allCategory.map(function(category){
-      var tmp = document.getElementById(category._id).checked;
-      if (tmp) {
-        categoryId.push(category._id);
-      }
-    })
     const formData = {
       image: image,
-      categoryId:categoryId,
       afrikaans: afrikaans.value,
       albanian: albanian.value,
       amharic: amharic.value,
@@ -187,8 +178,7 @@ class Addtranslation extends React.Component {
       zapotec: zapotec.value,
       zulu: zulu.value
     }
-    addTranslation(formData);
-
+    addCategory(formData);
   }
 
   addImage(e){
@@ -207,7 +197,7 @@ class Addtranslation extends React.Component {
   }
 
   render() {
-    const {allCategory,error,translationLanguages,image} = this.props;
+    const {error,translationLanguages,image} = this.props;
     return (
       <div id="outer">
         <nav className="navbar navbar-default" >
@@ -223,49 +213,29 @@ class Addtranslation extends React.Component {
         <div id="addBox">
           <div className="panel panel-success" id="addPopOut">
             <div className="panel-heading">
-              <h3 className="panel-title">Add New Translation</h3>
+              <h3 className="panel-title">Add New Category</h3>
             </div>
             <div className="panel-body">
               {error ? Bert.alert( error, 'danger', 'fixed-top', 'fa-frown-o' ):""}
-              <div className='form-group col-md-4' id="verticalLine">
+              <div className='form-group col-md-6' id="verticalLine">
                 <div className="row">
                   <div className="col-sm-12 col-md-12">
                     {image ? <a className='pull-right' onClick={this.removeImage.bind(this)}><span className="glyphicon glyphicon-remove-sign" aria-hidden="true" id='closebtn'></span></a>
                     : <a className='pull-right'></a>}
                     <div className="thumbnail" id="imageThmbnail">
                       {image ?
-                      <img className="img-rounded" src={image} alt="..." id='imageT'/>
-                      :<img className="img-rounded" src="https://s27.postimg.org/8ohcupxnn/oie_56_N3_A2a_Aeoma.jpg" alt="..." id='imageT'/>
+                      <img className="img-rounded" src={image} alt="..." id='image'/>
+                      :<img className="img-rounded" src="https://s27.postimg.org/8ohcupxnn/oie_56_N3_A2a_Aeoma.jpg" alt="..." id='image'/>
                       }
                     </div>
-                    <label type="button" className="btn btn-info btn-file" id='addImageT' >Add Image<input type="file" ref='image' onChange={this.addImage.bind(this)}/></label>
+                    <label type="button" className="btn btn-info btn-file" id='addImage' >Add Image<input type="file" ref='image' onChange={this.addImage.bind(this)}/></label>
                   </div>
                 </div>
               </div>
-              <div className='form-group col-md-4' id="verticalLine">
-                <div className="row">
-                  <div className="col-sm-12 col-md-12">
-                    <h5>Please check atleast 1 category below:</h5>
-                    <form className="form-group col-lg-12">
-                     <fieldset className="row form-group" id="addTranslationFormGroup">
-                       <div className="form-check">
-                          {allCategory.map(function(category){
-                            return (
-                              <label className="form-check-label" id='labelCategoryCheckBoxes' key={category._id}>
-                                <input type="checkbox" className="form-check-input" name="categoryCheckBoxes" id={category._id} value={category._id}  />
-                                {category.english}
-                              </label>
-                            )})}
-                       </div>
-                     </fieldset>
-                   </form>
-                  </div>
-                </div>
-              </div>
-              <div className='form-group col-md-4' id="third">
+              <div className='form-group col-md-6' id="third">
                 <div className="row" >
                   <div className="col-sm-12 col-md-12" >
-                    <h5>Please enter atleast 1 translation below:</h5>
+                    <h5>Please enter category name atleast 1 translation below:</h5>
                     <form className='form-group col-md-12' >
                       <fieldset id="addTranslationFormGroup">
                           {translationLanguages.map(function(language){
@@ -283,7 +253,8 @@ class Addtranslation extends React.Component {
                   </div>
                 </div>
               </div>
-              <button type="button" className="btn btn-primary navbar-btn pull-right" id='btn' onClick={this.addTranslation.bind(this)}>Save</button>
+              <br/><br/>
+              <button type="button" className="btn btn-primary navbar-btn pull-right" id='btn' onClick={this.addCategory.bind(this)}>Save</button>
               <button type="button" className="btn btn-primary navbar-btn pull-right" id='btn' onClick={this.goBackHome.bind(this)}>Cancel</button>
             </div>
           </div>
@@ -293,4 +264,4 @@ class Addtranslation extends React.Component {
   }
 }
 
-export default Addtranslation;
+export default Addcategory;

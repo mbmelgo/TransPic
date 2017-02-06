@@ -10,6 +10,6 @@ export default function () {
   });
 
   Meteor.publish('getAllCategory', function () {
-    return Category.find({});
+    return Category.find({},{ english: 1 });
   });
 }

@@ -1,5 +1,5 @@
 import {useDeps, composeAll, composeWithTracker, compose} from 'mantra-core';
-
+import {Bert} from 'meteor/themeteorchef:bert';
 import Addtranslation from '../components/addtranslation.jsx';
 
 export const composer = ({context}, onData) => {
@@ -146,14 +146,19 @@ export const composer = ({context}, onData) => {
     {_id:"zapotec",name: "Zapotec"},
     {_id:"zulu",name: "Zulu"}
   ];
+  const error = LocalState.get("ADD_TRANSLATION_ERROR");
+  const image = LocalState.get('image');
   if (Meteor.subscribe("getAllCategory").ready()) {
     const allCategory = Collections.Category.find({}).fetch();
-    onData(null, {LocalState,allCategory,translationLanguages});
+    onData(null, {error,image,allCategory,translationLanguages});
   }
 };
 
 export const depsMapper = (context, actions) => ({
   addTranslation: actions.core.addTranslation,
+  addImage: actions.core.addImage,
+  removeImage: actions.core.removeImage,
+  goBackHome: actions.core.goBackHome,
   signoutUser: actions.core.signoutUser,
   clearAddTranslationErrors: actions.core.clearAddTranslationErrors,
   context: () => context

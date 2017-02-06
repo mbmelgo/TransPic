@@ -1,9 +1,13 @@
 import React from 'react';
-import SearchResult from '../containers/searchresult.js';
 
 class Adminhome extends React.Component {
   constructor(props) {
     super(props);
+  }
+
+  componentWillUnmount(){
+    const {clearSearchErrors} = this.props;
+    clearSearchErrors();
   }
 
   signout() {
@@ -12,28 +16,28 @@ class Adminhome extends React.Component {
   }
 
   selectWordOption() {
-    const {LocalState} = this.props;
-    LocalState.set({wordSelected:true});
+    const {toggleWordCategorySelection} = this.props;
+    toggleWordCategorySelection(true);
   }
 
   selectCategoryOption() {
-    const {LocalState} = this.props;
-    LocalState.set({wordSelected:false});
+    const {toggleWordCategorySelection} = this.props;
+    toggleWordCategorySelection(false);
   }
 
   searchItem(){
-    const {LocalState} = this.props;
-    const {selectLangauge,searchItem,chckboxform} = this.refs;
-    console.log(chckboxform.value);
-    var wordSelected = true;
-    if (!LocalState.get('wordSelected')) {
-      wordSelected = false;
+    const {wordSelected,setSearch} = this.props;
+    const {selectLangauge,searchItem} = this.refs;
+    var tmp = true;
+    if (!wordSelected) {
+      tmp = false;
     }
-    LocalState.set({
+    const parameters = {
       searchLanguage: selectLangauge.value,
       searchItem: searchItem.value,
-      wordSelected: wordSelected
-    });
+      wordSelected: tmp
+    }
+    setSearch(parameters);
   }
 
   goToAddTranslation(){
@@ -41,8 +45,14 @@ class Adminhome extends React.Component {
     goToAddTranslation();
   }
 
+
+  goToAddCategory(){
+    const {goToAddCategory} = this.props;
+    goToAddCategory();
+  }
+
   render() {
-    const {results, LocalState,translationLanguages} = this.props;
+    const {results, wordSelected,searchItem,searchLanguage,translationLanguages} = this.props;
     return (
       <div id="outer">
         <nav className="navbar navbar-default" >
@@ -87,12 +97,22 @@ class Adminhome extends React.Component {
            })}
           </select>
         </div>
-        { LocalState.get("wordSelected") ?
+        { wordSelected ?
           <button onClick={this.goToAddTranslation.bind(this)} type="button" className="btn btn-primary navbar-btn pull-right col-lg-2" id='optbtn' >Add New Translation</button>
-        : <button type="button" className="btn btn-primary navbar-btn pull-right col-lg-2" id='optbtn' >Add New Category</button>
+        : <button onClick={this.goToAddCategory.bind(this)} type="button" className="btn btn-primary navbar-btn pull-right col-lg-2" id='optbtn' >Add New Category</button>
         }
         </div>
-        <SearchResult searchItem={LocalState.get('searchItem')} searchLanguage={LocalState.get('searchLanguage')} wordSelected={LocalState.get('wordSelected')}/>
+        <div id="searchBox">
+          <div className="panel panel-success" id="searchPopOut">
+            <div className="panel-heading">
+              <h3 className="panel-title">{searchItem ? "Search Results" : "Search for a word or category"}</h3>
+            </div>
+              <div className="panel-body">
+
+
+              </div>
+          </div>
+        </div>
       </div>
     );
   }

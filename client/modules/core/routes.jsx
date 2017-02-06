@@ -6,6 +6,7 @@ import Signup from './containers/signup.js';
 import Signin from './containers/signin.js';
 import AdminHome from './containers/adminhome.js';
 import AddTranslation from './containers/addtranslation.js';
+import AddCategory from './containers/addcategory.js';
 
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
@@ -52,6 +53,16 @@ export default function (injectDeps, {FlowRouter}) {
     action() {
       mount(MainLayoutCtx, {
         content: () => (<AddTranslation />)
+      });
+    }
+  });
+
+  FlowRouter.route('/add_category', {
+    name: 'add_category',
+    triggersEnter: [authenticate],
+    action() {
+      mount(MainLayoutCtx, {
+        content: () => (<AddCategory />)
       });
     }
   });
