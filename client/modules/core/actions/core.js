@@ -370,6 +370,20 @@ export default {
     });
   },
 
+  deleteCategory({Meteor, LocalState, FlowRouter, Collections}, categoryId){
+    if(!categoryId) return LocalState.set('DELETE_CATEGORY_ERROR','Category not Found!');
+    Meteor.call('deleteCategory', categoryId, (err) => {
+      if(err){return LocalState.set('DELETE_CATEGORY_ERROR', err.message);}
+    });
+  },
+
+  deleteTranslation({Meteor, LocalState, FlowRouter, Collections}, translationId){
+    if(!translationId) return LocalState.set('DELETE_TRANSLATION_ERROR','Translation not Found!');
+    Meteor.call('deleteTranslation', translationId, (err) => {
+      if(err){return LocalState.set('DELETE_TRANSLATION_ERROR', err.message);}
+    });
+  },
+
   goBackHome({FlowRouter}){
     FlowRouter.go('/admin_home');
   },
@@ -397,10 +411,22 @@ export default {
     });
   },
 
+  clearDeleteCategoryErrors({LocalState}){
+    return LocalState.set({
+      "DELETE_CATEGORY_ERROR": null,
+    });
+  },
+
   clearAddTranslationErrors({LocalState}){
     return LocalState.set({
       "ADD_TRANSLATION_ERROR": null,
       "image": null
+    });
+  },
+
+  clearDeleteTranslationErrors({LocalState}){
+    return LocalState.set({
+      "DELETE_TRANSLATION_ERROR": null,
     });
   },
 

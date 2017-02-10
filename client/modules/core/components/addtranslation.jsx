@@ -214,7 +214,7 @@ class Addtranslation extends React.Component {
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
-                <img alt="Brand" src="https://s10.postimg.org/b9n3rh4rt/Logo_Makr.png" id="brandLogo"/>
+                <img alt="Brand" src="/images/logo.png" id="brandLogo"/>
               </a>
               <button type="button" className="btn btn-success navbar-btn pull-right" id='lgbtn' onClick={this.signout.bind(this)}>LOGOUT</button>
               </div>
@@ -235,7 +235,7 @@ class Addtranslation extends React.Component {
                     <div className="thumbnail" id="imageThmbnail">
                       {image ?
                       <img className="img-rounded" src={image} alt="..." id='imageT'/>
-                      :<img className="img-rounded" src="https://s27.postimg.org/8ohcupxnn/oie_56_N3_A2a_Aeoma.jpg" alt="..." id='imageT'/>
+                      :<img className="img-rounded" src="/images/no_image.jpg" alt="..." id='imageT'/>
                       }
                     </div>
                     <label type="button" className="btn btn-info btn-file" id='addImageT' >Add Image<input type="file" ref='image' onChange={this.addImage.bind(this)}/></label>

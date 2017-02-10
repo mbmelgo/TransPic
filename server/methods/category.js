@@ -162,7 +162,12 @@ export default function () {
         throw new Meteor.Error(Checker.keyErrorMessage(o.name))
       })
 
-    }
+    },
+
+    'deleteCategory'(categoryId) {
+      check(categoryId, String);
+      Category.remove({_id:categoryId});
+    },
 
   });
 }

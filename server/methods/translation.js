@@ -163,6 +163,11 @@ export default function () {
       _.map(messageError, function(o){
         throw new Meteor.Error(Checker.keyErrorMessage(o.name))
       })
-    }
+    },
+
+    'deleteTranslation'(translationId) {
+      check(translationId, String);
+      Translation.remove({_id:translationId});
+    },
   });
 }

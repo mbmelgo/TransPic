@@ -5,7 +5,7 @@ import {check} from 'meteor/check';
 export default function () {
   Meteor.publish('searchCategory', function (searchItem,searchLanguage) {
     var query = {};
-    query[searchLanguage] = searchItem;
+    query[searchLanguage] = {$regex:searchItem,$options:"i"};
     return Category.find(query);
   });
 

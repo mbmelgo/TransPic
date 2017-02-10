@@ -156,7 +156,7 @@ export const composer = ({context}, onData) => {
       Meteor.subscribe("searchTranslation", searchItem,searchLanguage).ready()) {
       var results = [];
       var query = {};
-      query[searchLanguage] = searchItem;
+      query[searchLanguage] = {$regex:searchItem,$options:"i"};
       if (searchItem.length > 0) {
         wordSelected ?
           results = Collections.Translation.find(query).fetch() :

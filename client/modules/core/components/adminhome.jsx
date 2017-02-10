@@ -1,4 +1,6 @@
 import React from 'react';
+import Category from '../containers/category.js';
+import Translation from '../containers/translation.js';
 
 class Adminhome extends React.Component {
   constructor(props) {
@@ -59,7 +61,7 @@ class Adminhome extends React.Component {
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
-                <img alt="Brand" src="https://s10.postimg.org/b9n3rh4rt/Logo_Makr.png" id="brandLogo"/>
+                <img alt="Brand" src="/images/logo.png" id="brandLogo"/>
               </a>
               <button type="button" className="btn btn-success navbar-btn pull-right" id='lgbtn' onClick={this.signout.bind(this)}>LOGOUT</button>
               </div>
@@ -108,8 +110,15 @@ class Adminhome extends React.Component {
               <h3 className="panel-title">{searchItem ? "Search Results" : "Search for a word or category"}</h3>
             </div>
               <div className="panel-body">
-
-
+                {
+                  wordSelected ?
+                  (results.length > 0 ?
+                    results.map(category => (<Category key={category._id} categoryDetails={category} selectedLanguage={searchLanguage}/>))
+                    : searchItem ? <div>No Category Found</div> : <div></div>) :
+                  (results.length > 0 ?
+                    results.map(translation => (<Translation key={translation._id} translationDetails={translation} selectedLanguage={searchLanguage}/>))
+                    : searchItem ? <div>No Word Found</div> : <div></div>)
+                }
               </div>
           </div>
         </div>

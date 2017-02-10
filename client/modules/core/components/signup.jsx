@@ -51,7 +51,7 @@ class Signup extends React.Component {
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
-                <img alt="Brand" src="https://s10.postimg.org/b9n3rh4rt/Logo_Makr.png" id="brandLogo"/>
+                <img alt="Brand" src="/images/logo.png" id="brandLogo"/>
               </a>
               <a href="/admin_home" id="nav-out">
                 <button type="button" className="btn btn-success navbar-btn pull-right" id='lgbtn'>
