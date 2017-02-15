@@ -24,9 +24,9 @@ class Translation extends React.Component {
                   <span className="caret"></span>
                  </a>
                  <ul className="dropdown-menu">
-                   <li><a href="#" onClick={this.deleteTranslation.bind(this)}>Delete</a></li>
-                   <li><a href="#" >Update</a></li>
                    <li><a href="#" >View</a></li>
+                   <li><a href="#" >Update</a></li>
+                   <li><a href="#" onClick={this.deleteTranslation.bind(this)}>Delete</a></li>
                  </ul>
                </div>
               <img className='img-rounded'  id="searchResultsImage" src={translationDetails.image}/>

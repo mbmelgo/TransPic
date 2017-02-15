@@ -23,14 +23,14 @@ class Category extends React.Component {
                 <span className="caret"></span>
                </a>
                <ul className="dropdown-menu">
-                 <li><a href="#" onClick={this.deleteCategory.bind(this)}>Delete</a></li>
-                 <li><a href="#" >Update</a></li>
                  <li><a href="#" >View</a></li>
+                 <li><a href="#" >Update</a></li>
+                 <li><a href="#" onClick={this.deleteCategory.bind(this)}>Delete</a></li>
                </ul>
              </div>
             <img className='img-rounded'  id="searchResultsImage" src={categoryDetails.image}/>
             <div className='caption' id='labelView' >
-              {categoryDetails[selectedLanguage]}              
+              {categoryDetails[selectedLanguage]}
             </div>
           </div>
         </div>
