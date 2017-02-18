@@ -148,7 +148,7 @@ export const composer = ({context}, onData) => {
   ];
   const image = LocalState.get('image');
   const error = LocalState.get('ADD_CATEGORY_ERROR');
-  onData(null, {error,translationLanguages,image});
+  onData(null, {error,translationLanguages,image, Meteor});
 };
 
 export const depsMapper = (context, actions) => ({

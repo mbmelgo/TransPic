@@ -146,7 +146,6 @@ export const composer = ({context}, onData) => {
     {_id:"zapotec",name: "Zapotec"},
     {_id:"zulu",name: "Zulu"}
   ];
-
   var searchItem = "";
   var searchLanguage = "afrikaans";
   var wordSelected = LocalState.get('wordSelected');
@@ -156,7 +155,8 @@ export const composer = ({context}, onData) => {
       Meteor.subscribe("searchTranslation", searchItem,searchLanguage).ready()) {
       var results = [];
       var query = {};
-      query[searchLanguage] = {$regex:searchItem,$options:"i"};
+      var l = searchLanguage + ".word";
+      query[l] = {$regex:searchItem,$options:"i"};
       if (searchItem.length > 0) {
         wordSelected ?
           results = Collections.Translation.find(query).fetch() :

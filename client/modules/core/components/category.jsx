@@ -30,7 +30,7 @@ class Category extends React.Component {
              </div>
             <img className='img-rounded'  id="searchResultsImage" src={categoryDetails.image}/>
             <div className='caption' id='labelView' >
-              {categoryDetails[selectedLanguage]}
+              {categoryDetails[selectedLanguage].word}
             </div>
           </div>
         </div>

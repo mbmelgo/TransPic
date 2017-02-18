@@ -1,9 +1,9 @@
 import React from 'react';
 
 class Translation extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+      super(props);
+    }
 
 
     deleteTranslation(e){
@@ -31,7 +31,7 @@ class Translation extends React.Component {
                </div>
               <img className='img-rounded'  id="searchResultsImage" src={translationDetails.image}/>
               <div className='caption' id='labelView' >
-                {translationDetails[selectedLanguage]}
+                {translationDetails[selectedLanguage].word}
               </div>
             </div>
           </div>

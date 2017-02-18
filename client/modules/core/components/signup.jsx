@@ -8,12 +8,13 @@ class Signup extends React.Component {
   signupUser(e){
     e.preventDefault();
     const {signupUser} = this.props;
-    const {username, password, profileFirstName, profileLastName, profileOrganization, profileOccupation} = this.refs;
+    const {username, password, profileFirstName, profileLastName, profileOrganization, profileOccupation, profileEmail} = this.refs;
     const profile = {
       firstName: profileFirstName.value,
       lastName: profileLastName.value,
       occupation: profileOccupation.value,
       organization: profileOrganization.value,
+      email: profileEmail.value,
     };
     const formData = {
       username: username.value,
@@ -25,13 +26,14 @@ class Signup extends React.Component {
 
   clear(e){
     e.preventDefault();
-    const {username, password, profileFirstName, profileLastName, profileOrganization, profileOccupation} = this.refs;
+    const {username, password, profileFirstName, profileLastName, profileOrganization, profileOccupation, profileEmail} = this.refs;
     username.value = '';
     password.value = '';
     profileFirstName.value = '';
     profileLastName.value = '';
     profileOrganization.value = '';
     profileOccupation.value = '';
+    profileEmail.value = '';
     const {clearAccountErrors} = this.props;
     clearAccountErrors();
   }
@@ -95,6 +97,12 @@ class Signup extends React.Component {
                       <label className='col-sm-3 control-label' htmlFor='profile.lastName' id='labelSignUp'>Last Name:</label>
                       <div className='col-sm-8'>
                         <input id='profile.lastName' ref='profileLastName' name='profile.lastName' type='text' placeholder='Last Name' className='form-control' id='form-control'/>
+                      </div><br/><br/>
+                    </div>
+                    <div className='form-group'>
+                      <label className='col-sm-3 control-label' htmlFor='profile.email' id='labelSignUp'>Email:</label>
+                      <div className='col-sm-8'>
+                        <input id='profile.email' ref='profileEmail' name='profile.email' type='text' placeholder='Email' className='form-control' id='form-control'/>
                       </div><br/><br/>
                     </div>
                     <div className='form-group'>

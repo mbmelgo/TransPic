@@ -148,9 +148,10 @@ export const composer = ({context}, onData) => {
   ];
   const error = LocalState.get("ADD_TRANSLATION_ERROR");
   const image = LocalState.get('image');
+  const selectLangauge = LocalState.get('languageSelected') ? LocalState.get('languageSelected') : "afrikaans";
   if (Meteor.subscribe("getAllCategory").ready()) {
     const allCategory = Collections.Category.find({}).fetch();
-    onData(null, {error,image,allCategory,translationLanguages});
+    onData(null, {error,image,allCategory,translationLanguages,selectLangauge});
   }
 };
 
@@ -160,6 +161,7 @@ export const depsMapper = (context, actions) => ({
   removeImage: actions.core.removeImage,
   goBackHome: actions.core.goBackHome,
   signoutUser: actions.core.signoutUser,
+  setLangaugeSelected: actions.core.setLangaugeSelected,
   clearAddTranslationErrors: actions.core.clearAddTranslationErrors,
   context: () => context
 });

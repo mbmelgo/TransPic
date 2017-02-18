@@ -112,12 +112,12 @@ class Adminhome extends React.Component {
               <div className="panel-body">
                 {
                   wordSelected ?
-                  (results.length > 0 ?
-                    results.map(category => (<Category key={category._id} categoryDetails={category} selectedLanguage={searchLanguage}/>))
-                    : searchItem ? <div>No Category Found</div> : <div></div>) :
-                  (results.length > 0 ?
-                    results.map(translation => (<Translation key={translation._id} translationDetails={translation} selectedLanguage={searchLanguage}/>))
-                    : searchItem ? <div>No Word Found</div> : <div></div>)
+                    (results.length > 0 ?
+                      results.map(translation => (<Translation key={translation._id} translationDetails={translation} selectedLanguage={searchLanguage}/>))
+                      : searchItem ? <div>No Word Found</div> : <div></div>) : 
+                    (results.length > 0 ?
+                      results.map(category => (<Category key={category._id} categoryDetails={category} selectedLanguage={searchLanguage}/>))
+                      : searchItem ? <div>No Category Found</div> : <div></div>)
                 }
               </div>
           </div>

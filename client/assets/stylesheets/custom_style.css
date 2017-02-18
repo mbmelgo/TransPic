@@ -81,6 +81,21 @@ div#main-layout {
   color: red;
 }
 
+#errorLabelLeft{
+  text-align: left;
+  font-family: 'Slabo 30px', serif !important;
+  margin-top: 1.25%;
+  color: red;
+}
+
+#errorLabelCenter{
+  text-align: center;
+  font-family: 'Slabo 50px', serif !important;
+  margin-top: 1.25%;
+  color: red;
+  height: 70%;
+}
+
 #btn{
   margin-left: 10px;
   border-width: 2px;
@@ -195,6 +210,13 @@ div#main-layout {
   overflow-y: scroll;
 }
 
+#addTranslationFormGroup2{
+  margin-top: 5%;
+  height: 218px;
+  max-height: 218px;
+  overflow-y: scroll;
+}
+
 #addImage{
   margin-left: 5%;
   border-width: 2px;
@@ -288,4 +310,9 @@ div#main-layout {
   text-align: center;
   font-family: 'Slabo 27px', serif !important;
   width: 100%;
+}
+
+#errorPanelBody{
+  width: 100%;
+  height: 100%;
 }
