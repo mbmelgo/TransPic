@@ -13,4 +13,8 @@ export default function () {
   Meteor.publish('getAllCategory', function () {
     return Category.find({},{ english: 1 });
   });
+
+  Meteor.publish('getCategories', function (categoryIds) {
+    return Category.find({ _id: { $all: categoryIds } });
+  });
 }

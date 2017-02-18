@@ -13,6 +13,16 @@ class Translation extends React.Component {
       deleteTranslation(_id);
     }
 
+    showModal(e){
+      e.preventDefault();
+      const {showModal,translationDetails} = this.props;
+      const modal = {
+        isCategory: false,
+        content: translationDetails
+      };
+      showModal(modal);
+    }
+
     render() {
       const {translationDetails,selectedLanguage} = this.props;
       if(translationDetails) {
@@ -24,7 +34,7 @@ class Translation extends React.Component {
                   <span className="caret"></span>
                  </a>
                  <ul className="dropdown-menu">
-                   <li><a href="#" >View</a></li>
+                   <li><a href="#" data-toggle="modal" data-target="#myModal" onClick={this.showModal.bind(this)}>View</a></li>
                    <li><a href="#" >Update</a></li>
                    <li><a href="#" onClick={this.deleteTranslation.bind(this)}>Delete</a></li>
                  </ul>

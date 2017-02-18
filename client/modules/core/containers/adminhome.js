@@ -149,6 +149,7 @@ export const composer = ({context}, onData) => {
   var searchItem = "";
   var searchLanguage = "afrikaans";
   var wordSelected = LocalState.get('wordSelected');
+  var modal = LocalState.get('modal');
   LocalState.get("searchLanguage") ? searchLanguage = LocalState.get('searchLanguage') : searchLanguage = "afrikaans";
   LocalState.get("searchItem") ? searchItem = LocalState.get('searchItem') : searchItem = "";
   if (Meteor.subscribe("searchCategory", searchItem,searchLanguage).ready() &&
@@ -162,7 +163,7 @@ export const composer = ({context}, onData) => {
           results = Collections.Translation.find(query).fetch() :
           results = Collections.Category.find(query).fetch()
       }
-      onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages});
+      onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal});
   }
 };
 
@@ -170,6 +171,7 @@ export const depsMapper = (context, actions) => ({
   signoutUser: actions.core.signoutUser,
   toggleWordCategorySelection: actions.core.toggleWordCategorySelection,
   setSearch: actions.core.setSearch,
+  showModal: actions.core.showModal,
   goToAddTranslation: actions.core.goToAddTranslation,
   goToAddCategory: actions.core.goToAddCategory,
   clearSearchErrors: actions.core.clearSearchErrors,

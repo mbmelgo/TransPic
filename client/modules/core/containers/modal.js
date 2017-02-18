@@ -1,9 +1,9 @@
 import {useDeps, composeAll, composeWithTracker, compose} from 'mantra-core';
-import {Bert} from 'meteor/themeteorchef:bert';
-import Addtranslation from '../components/addtranslation.jsx';
 
-export const composer = ({context}, onData) => {
-  const {Meteor, LocalState,Collections} = context();
+import Modal from '../components/modal.jsx';
+
+export const composer = ({context,modal}, onData) => {
+  const {Meteor, Collections, LocalState} = context();
   const translationLanguages = [
     {_id:"afrikaans",name: "Afrikaans"},
     {_id:"albanian",name: "Albanian"},
@@ -146,27 +146,29 @@ export const composer = ({context}, onData) => {
     {_id:"zapotec",name: "Zapotec"},
     {_id:"zulu",name: "Zulu"}
   ];
-  const error = LocalState.get("ADD_TRANSLATION_ERROR");
-  const image = LocalState.get('image');
+  const {content, isCategory} = modal;
+  const contributor_id = LocalState.get('contributor') ? LocalState.get('contributor') : "";
   const selectLanguage = LocalState.get('languageSelected') ? LocalState.get('languageSelected') : "afrikaans";
-  if (Meteor.subscribe("getAllCategory").ready()) {
-    const allCategory = Collections.Category.find({}).fetch();
-    onData(null, {error,image,allCategory,translationLanguages,selectLanguage});
+  if (isCategory) {
+    if(Meteor.subscribe("getUser",contributor_id).ready()){
+      const contributor = Meteor.users.find(contributor_id).fetch();
+      onData(null, {modal,contributor,translationLanguages,selectLanguage});
+    }
+  } else {
+    if(Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getCategories", content.categoryId)){
+      const categories = Collections.Category.find({ _id: { $all: content.categoryId } }).fetch();
+      const contributor = Meteor.users.find(contributor_id).fetch();
+      onData(null, {modal,categories,contributor,translationLanguages,selectLanguage});
+    }
   }
 };
 
 export const depsMapper = (context, actions) => ({
-  addTranslation: actions.core.addTranslation,
-  addImage: actions.core.addImage,
-  removeImage: actions.core.removeImage,
-  goBackHome: actions.core.goBackHome,
-  signoutUser: actions.core.signoutUser,
-  setLanguageSelected: actions.core.setLanguageSelected,
-  clearAddTranslationErrors: actions.core.clearAddTranslationErrors,
+  setLanguageSelectedView: actions.core.setLanguageSelectedView,
   context: () => context
 });
 
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(Addtranslation);
+)(Modal);

@@ -12,6 +12,16 @@ class Category extends React.Component {
     deleteCategory(_id);
   }
 
+  showModal(e){
+    e.preventDefault();
+    const {showModal,categoryDetails} = this.props;
+    const modal = {
+      isCategory: true,
+      content: categoryDetails
+    };
+    showModal(modal);
+  }
+
   render() {
     const {categoryDetails,selectedLanguage} = this.props;
     if(categoryDetails) {
@@ -23,7 +33,7 @@ class Category extends React.Component {
                 <span className="caret"></span>
                </a>
                <ul className="dropdown-menu">
-                 <li><a href="#" >View</a></li>
+                 <li><a href="#" data-toggle="modal" data-target="#myModal" onClick={this.showModal.bind(this)}>View</a></li>
                  <li><a href="#" >Update</a></li>
                  <li><a href="#" onClick={this.deleteCategory.bind(this)}>Delete</a></li>
                </ul>

@@ -61,13 +61,13 @@ class Addtranslation extends React.Component {
 
   changeLanguage(e){
     e.preventDefault();
-    const {setLangaugeSelected} = this.props;
-    const {selectLangauge} = this.refs;
-    setLangaugeSelected(selectLangauge.value);
+    const {setLanguageSelected} = this.props;
+    const {selectLanguage} = this.refs;
+    setLanguageSelected(selectLanguage.value);
   }
 
   render() {
-    const {allCategory,error,translationLanguages,image, selectLangauge} = this.props;
+    const {allCategory,error,translationLanguages,image, selectLanguage} = this.props;
     return (
       <div id="outer">
         <nav className="navbar navbar-default" >
@@ -118,7 +118,7 @@ class Addtranslation extends React.Component {
                     <div className="col-sm-12 col-md-12">
                       <h5>Please check atleast 1 category below:</h5>
                       <div className="col-md-12" id="topbar">
-                        <select id='selectLangauge' ref='selectLangauge' className='selectpicker form-control' id='form-control' onChange={this.changeLanguage.bind(this)}>
+                        <select id='selectLanguage' ref='selectLanguage' className='selectpicker form-control' id='form-control' onChange={this.changeLanguage.bind(this)}>
                          {translationLanguages.map(function(language){
                            return <option value={language._id} key={language._id}>{language.name}</option>
                          })}
@@ -131,7 +131,7 @@ class Addtranslation extends React.Component {
                               return (
                                 <label className="form-check-label" id='labelCategoryCheckBoxes' key={category._id}>
                                   <input type="checkbox" className="form-check-input" name="categoryCheckBoxes" id={category._id} value={category._id}  />
-                                  {category[selectLangauge].word ? "  "+category[selectLangauge].word: "No Translation Avaliable"}
+                                  {category[selectLanguage].word ? "  "+category[selectLanguage].word: "Language not yet supported!"}
                                 </label>
                               )})}
                          </div>

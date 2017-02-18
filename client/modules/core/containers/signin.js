@@ -1,5 +1,5 @@
 import {useDeps, composeAll, composeWithTracker, compose} from 'mantra-core';
-
+import {Bert} from 'meteor/themeteorchef:bert';
 import Signin from '../components/signin.jsx';
 
 export const composer = ({context}, onData) => {

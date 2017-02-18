@@ -1,6 +1,7 @@
 import React from 'react';
 import Category from '../containers/category.js';
 import Translation from '../containers/translation.js';
+import Modal from '../containers/modal.js';
 
 class Adminhome extends React.Component {
   constructor(props) {
@@ -29,13 +30,13 @@ class Adminhome extends React.Component {
 
   searchItem(){
     const {wordSelected,setSearch} = this.props;
-    const {selectLangauge,searchItem} = this.refs;
+    const {selectLanguage,searchItem} = this.refs;
     var tmp = true;
     if (!wordSelected) {
       tmp = false;
     }
     const parameters = {
-      searchLanguage: selectLangauge.value,
+      searchLanguage: selectLanguage.value,
       searchItem: searchItem.value,
       wordSelected: tmp
     }
@@ -54,7 +55,7 @@ class Adminhome extends React.Component {
   }
 
   render() {
-    const {results, wordSelected,searchItem,searchLanguage,translationLanguages} = this.props;
+    const {results, wordSelected,searchItem,searchLanguage,translationLanguages, modal, showModal} = this.props;
     return (
       <div id="outer">
         <nav className="navbar navbar-default" >
@@ -93,7 +94,7 @@ class Adminhome extends React.Component {
            </fieldset>
          </form>
         <div className="col-lg-4" id="topbar">
-          <select id='selectLangauge' ref='selectLangauge' className='selectpicker form-control' id='form-control'>
+          <select id='selectLanguage' ref='selectLanguage' className='selectpicker form-control' id='form-control'>
            {translationLanguages.map(function(language){
              return <option value={language._id} key={language._id}>{language.name}</option>
            })}
@@ -113,15 +114,16 @@ class Adminhome extends React.Component {
                 {
                   wordSelected ?
                     (results.length > 0 ?
-                      results.map(translation => (<Translation key={translation._id} translationDetails={translation} selectedLanguage={searchLanguage}/>))
-                      : searchItem ? <div>No Word Found</div> : <div></div>) : 
+                      results.map(translation => (<Translation key={translation._id} translationDetails={translation} selectedLanguage={searchLanguage} showModal={showModal}/>))
+                      : searchItem ? <div>No Word Found</div> : <div></div>) :
                     (results.length > 0 ?
-                      results.map(category => (<Category key={category._id} categoryDetails={category} selectedLanguage={searchLanguage}/>))
+                      results.map(category => (<Category key={category._id} categoryDetails={category} selectedLanguage={searchLanguage} showModal={showModal}/>))
                       : searchItem ? <div>No Category Found</div> : <div></div>)
                 }
               </div>
           </div>
         </div>
+        {modal ? <Modal modal={modal}/>: ""}
       </div>
     );
   }

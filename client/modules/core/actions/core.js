@@ -14,7 +14,7 @@ export default {
     if(!formData.profile.email)return LocalState.set('ACCOUNT_ERROR','Email is Required');
 
     Meteor.call("addUser",formData, function (err){
-      if(err) return LocalState.set('ACCOUNT_ERROR',"Server Error: Account can't be created");
+      if(err) return LocalState.set('ACCOUNT_ERROR',err);
       else { FlowRouter.go('/admin_home');}
     });
   },
@@ -405,9 +405,22 @@ export default {
     });
   },
 
-  setLangaugeSelected({LocalState},selectLangauge){
+  setLanguageSelected({LocalState},selectLanguage){
     return LocalState.set({
-      languageSelected: selectLangauge,
+      languageSelected: selectLanguage,
+    });
+  },
+
+  setLanguageSelectedView({LocalState},params){
+    return LocalState.set({
+      languageSelected: params.selectLanguage,
+      contributor: params.contributor
+    });
+  },
+
+  showModal({LocalState},modal){
+    return LocalState.set({
+      modal: modal
     });
   },
 

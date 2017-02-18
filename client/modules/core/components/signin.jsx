@@ -45,9 +45,7 @@ class Signin extends React.Component {
             </div>
               <div className="panel-body">
                 <form className='form-group col-md-12'>
-                  {error
-                    ? <h4 id="errorLabel">{error}</h4>:<br />
-                  }
+                  {error ? Bert.alert( error, 'danger', 'fixed-top', 'fa-frown-o' ):""}
                   <fieldset>
                     <legend>Login</legend>
                     <div className="form-group">
