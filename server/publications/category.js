@@ -17,4 +17,8 @@ export default function () {
   Meteor.publish('getCategories', function (categoryIds) {
     return Category.find({ _id: { $all: categoryIds } });
   });
+
+  Meteor.publish('getSpecificCategory', function (categoryId) {
+    return Category.find({_id:categoryId});
+  });
 }

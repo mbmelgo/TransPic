@@ -1,8 +1,8 @@
 import {useDeps, composeAll, composeWithTracker, compose} from 'mantra-core';
+import {Bert} from 'meteor/themeteorchef:bert';
+import Updatecategory from '../components/updatecategory.jsx';
 
-import Modal from '../components/modal.jsx';
-
-export const composer = ({context,modal}, onData) => {
+export const composer = ({context,id}, onData) => {
   const {Meteor, Collections, LocalState} = context();
   const translationLanguages = [
     {_id:"afrikaans",name: "Afrikaans"},
@@ -146,27 +146,19 @@ export const composer = ({context,modal}, onData) => {
     {_id:"zapotec",name: "Zapotec"},
     {_id:"zulu",name: "Zulu"}
   ];
-  const {content, isCategory} = modal;
   const contributor_id = LocalState.get('contributor') ? LocalState.get('contributor') : "";
   const selectLanguage = LocalState.get('languageSelected') ? LocalState.get('languageSelected') : "afrikaans";
-  if (isCategory) {
-    if(Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getAllTranslationWithinThisCategory",modal.content._id).ready()){
-      const contributor = Meteor.users.find(contributor_id).fetch();
-      const translations = Collections.Translation.find({},{$elemMatch: { categoryId: modal.content._id }}).fetch();
-      onData(null, {modal,contributor,translationLanguages,selectLanguage, translations});
-    }
-  } else {
-    if(Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getCategories", content.categoryId)){
-      const categories = Collections.Category.find({ _id: { $all: content.categoryId } }).fetch();
-      const contributor = Meteor.users.find(contributor_id).fetch();
-      onData(null, {modal,categories,contributor,translationLanguages,selectLanguage});
-    }
+  if (Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getSpecificCategory",id.id).ready()) {
+    const contributor = Meteor.users.find(contributor_id).fetch();
+    const cat = Collections.Category.find({_id:id.id}).fetch();
+    const category = cat[0];
+    onData(null, {category,translationLanguages,contributor,selectLanguage});
   }
 };
 
 export const depsMapper = (context, actions) => ({
-  deleteCategory: actions.core.deleteCategory,
-  deleteTranslation: actions.core.deleteTranslation,
+  signoutUser: actions.core.signoutUser,
+  goBackHome: actions.core.goBackHome,
   setLanguageSelectedView: actions.core.setLanguageSelectedView,
   context: () => context
 });
@@ -174,4 +166,4 @@ export const depsMapper = (context, actions) => ({
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(Modal);
+)(Updatecategory);

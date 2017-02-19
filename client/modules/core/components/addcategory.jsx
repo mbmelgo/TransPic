@@ -89,7 +89,7 @@ class Addcategory extends React.Component {
               <div className='form-group col-md-6' id="third">
                 <div className="row" >
                   <div className="col-sm-12 col-md-12" >
-                    <h5>Please enter category name atleast 1 translation below:</h5>
+                    <h5>Please enter atleast 1 translation below:</h5>
                     <form className='form-group col-md-12' >
                       <fieldset id="addTranslationFormGroup">
                           {translationLanguages.map(function(language){

@@ -27,6 +27,37 @@ class Modal extends React.Component {
     setLanguageSelectedView(params);
   }
 
+  deleteCategory(e){
+    e.preventDefault();
+    const {deleteCategory,categoryDetails,translations} = this.props;
+    if (translations.length <= 0 ) {
+      const {_id} = categoryDetails;
+      deleteCategory(_id);
+    } else {
+      Bert.alert( "Deletion failed due to category is being used by "+translations.length+" translation/s.", 'danger', 'fixed-top', 'fa-frown-o' )
+    }
+  }
+
+  deleteTranslation(e){
+    e.preventDefault();
+    const {deleteTranslation,modal} = this.props;
+    const {content} = modal;
+    const {_id} = content;
+    deleteTranslation(_id);
+  }
+
+  closeModalCategory(){
+    const {modal} =  this.props;
+    const {content} = modal;
+    window.location = `/update_category/${content._id}`;
+  }
+
+  closeModaTranslation(){
+    const {modal} =  this.props;
+    const {content} = modal;
+    window.location = `/update_translation/${content._id}`;
+  }
+
   renderCategory(){
     const {modal, contributor,translationLanguages,selectLanguage} =  this.props;
     const {content} = modal;
@@ -36,9 +67,16 @@ class Modal extends React.Component {
           <div className="modal-content">
             <div className="modal-header">
               <div className="col-md-12">
-                <button type="button" className="close" data-dismiss="modal" id="modalButton">&times;</button>
+                <a href="#" className="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                 <span className="caret"></span>
+                </a>
+                <ul className="dropdown-menu pull-right">
+                  <li><a href="#" className="close" data-dismiss="modal" id="modalButton">Close</a></li>
+                  <li><a href="#" className="close" data-dismiss="modal" id="modalButton" onClick={this.closeModalCategory.bind(this)}>Update</a></li>
+                  <li><a href="#" className="close" data-dismiss="modal" id="modalButton" onClick={this.deleteCategory.bind(this)}>Delete</a></li>
+                </ul>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6" id="modalDivider">
                 <img className="img-thumbnail" src= {content.image} id='modalImage'/>
               </div>
               <div className="col-md-6" id="modalContent">
@@ -71,12 +109,19 @@ class Modal extends React.Component {
           <div className="modal-content">
             <div className="modal-header">
               <div className="col-md-12">
-                <button type="button" className="close" data-dismiss="modal" id="modalButton">&times;</button>
+                <a href="#" className="dropdown-toggle pull-right" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                 <span className="caret"></span>
+                </a>
+                <ul className="dropdown-menu pull-right">
+                  <li><a href="#" className="close" data-dismiss="modal" id="modalButton">Close</a></li>
+                  <li><a href="#" className="close" data-dismiss="modal" id="modalButton" onClick={this.closeModaTranslation.bind(this)}>Update</a></li>
+                  <li><a href="#" className="close" data-dismiss="modal" id="modalButton" onClick={this.deleteTranslation.bind(this)}>Delete</a></li>
+                </ul>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-6" id="modalDivider">
                 <img className="img-thumbnail" src= {content.image} id='modalImage'/>
               </div>
-              <div className="col-md-6" id="modalContentT">
+              <div className="col-md-6" id="modalContent">
                 <h4 id="labelView">Select Language of the Word</h4>
                 <select id='selectLanguage' ref='selectLanguage' className='selectpicker form-control' id='form-control' onChange={this.changeLanguage.bind(this)}>
                  {translationLanguages.map(function(language){

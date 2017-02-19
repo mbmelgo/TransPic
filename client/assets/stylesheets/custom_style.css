@@ -267,11 +267,20 @@ div#main-layout {
   height: 250px;
 }
 
+
+
 #imageT {
   width: 60%;
   height: 70%;
   display: block;
   margin-top: 13%;
+}
+
+#imageThmbnail:hover{
+  border-width: 2px;
+  border-color: black;
+  height: 250px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #addImageT{
@@ -344,6 +353,7 @@ div#main-layout {
   margin-left: auto;
   display: block;
   float: left;
+  border-right: 1px solid #ccc;
 }
 
 #modalImage:hover{
@@ -362,23 +372,15 @@ div#main-layout {
 }
 
 #modalContent{
+  height: inherit;
   max-width:100%;
-  max-height:100%;
+  max-height:inherit;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 17%;
   display: block;
   float: right;
-  border-left: 1px solid #ccc;
 }
 
-#modalContentT{
-  max-width:100%;
-  max-height:100%;
-  margin-right: auto;
-  margin-left: auto;
-  margin-top: 3.75%;
-  display: block;
-  float: right;
-  border-left: 1px solid #ccc;
+#modalDivider{
+  border-right: 1px solid #ccc;
 }

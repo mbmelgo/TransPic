@@ -13,4 +13,8 @@ export default function () {
   Meteor.publish('getAllTranslation', function () {
     return Translation.find({},{ english: 1 });
   });
+
+  Meteor.publish('getAllTranslationWithinThisCategory', function (categoryId) {
+    return Translation.find({},{$elemMatch: { categoryId: categoryId }});
+  });
 }

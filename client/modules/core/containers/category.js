@@ -1,10 +1,13 @@
 import {useDeps, composeAll, composeWithTracker, compose} from 'mantra-core';
-
+import {Bert} from 'meteor/themeteorchef:bert';
 import Category from '../components/category.jsx';
 
 export const composer = ({context,categoryDetails,selectedLanguage}, onData) => {
   const {Meteor, Collections} = context();
-  onData(null, {categoryDetails,selectedLanguage});
+  if (Meteor.subscribe("getAllTranslationWithinThisCategory",categoryDetails._id).ready()) {
+    const translations = Collections.Translation.find({},{$elemMatch: { categoryId: categoryDetails._id }}).fetch();
+    onData(null, {categoryDetails,selectedLanguage,translations});
+  }
 };
 
 export const depsMapper = (context, actions) => ({

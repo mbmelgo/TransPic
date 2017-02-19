@@ -35,7 +35,7 @@ class Translation extends React.Component {
                  </a>
                  <ul className="dropdown-menu">
                    <li><a href="#" data-toggle="modal" data-target="#myModal" onClick={this.showModal.bind(this)}>View</a></li>
-                   <li><a href="#" >Update</a></li>
+                   <li><a href={`/update_translation/${translationDetails._id}`} >Update</a></li>
                    <li><a href="#" onClick={this.deleteTranslation.bind(this)}>Delete</a></li>
                  </ul>
                </div>

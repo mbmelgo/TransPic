@@ -7,9 +7,13 @@ class Category extends React.Component {
 
   deleteCategory(e){
     e.preventDefault();
-    const {deleteCategory,categoryDetails} = this.props;
-    const {_id} = categoryDetails;
-    deleteCategory(_id);
+    const {deleteCategory,categoryDetails,translations} = this.props;
+    if (translations.length <= 0 ) {
+      const {_id} = categoryDetails;
+      deleteCategory(_id);
+    } else {
+      Bert.alert( "Deletion failed due to category is being used by "+translations.length+" translation/s.", 'danger', 'fixed-top', 'fa-frown-o' )
+    }
   }
 
   showModal(e){
@@ -34,7 +38,7 @@ class Category extends React.Component {
                </a>
                <ul className="dropdown-menu">
                  <li><a href="#" data-toggle="modal" data-target="#myModal" onClick={this.showModal.bind(this)}>View</a></li>
-                 <li><a href="#" >Update</a></li>
+                 <li><a href={`/update_category/${categoryDetails._id}`} >Update</a></li>
                  <li><a href="#" onClick={this.deleteCategory.bind(this)}>Delete</a></li>
                </ul>
              </div>
