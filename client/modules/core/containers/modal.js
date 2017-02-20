@@ -147,19 +147,26 @@ export const composer = ({context,modal}, onData) => {
     {_id:"zulu",name: "Zulu"}
   ];
   const {content, isCategory} = modal;
-  const contributor_id = LocalState.get('contributor') ? LocalState.get('contributor') : "";
+  var contributor_id = LocalState.get('contributor') ? LocalState.get('contributor') : "";
   const selectLanguage = LocalState.get('languageSelected') ? LocalState.get('languageSelected') : "afrikaans";
+  const cur = Meteor.userId();
   if (isCategory) {
     if(Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getAllTranslationWithinThisCategory",modal.content._id).ready()){
+      if (selectLanguage == "afrikaans") {
+        contributor_id = modal.content.afrikaans.contributor[0];
+      }
       const contributor = Meteor.users.find(contributor_id).fetch();
       const translations = Collections.Translation.find({},{$elemMatch: { categoryId: modal.content._id }}).fetch();
-      onData(null, {modal,contributor,translationLanguages,selectLanguage, translations});
+      onData(null, {modal,contributor,translationLanguages,selectLanguage, translations,cur});
     }
   } else {
     if(Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getCategories", content.categoryId)){
+      if (selectLanguage == "afrikaans") {
+        contributor_id = modal.content.afrikaans.contributor[0];
+      }
       const categories = Collections.Category.find({ _id: { $all: content.categoryId } }).fetch();
       const contributor = Meteor.users.find(contributor_id).fetch();
-      onData(null, {modal,categories,contributor,translationLanguages,selectLanguage});
+      onData(null, {modal,categories,contributor,translationLanguages,selectLanguage,cur});
     }
   }
 };

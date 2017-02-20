@@ -59,7 +59,7 @@ class Modal extends React.Component {
   }
 
   renderCategory(){
-    const {modal, contributor,translationLanguages,selectLanguage} =  this.props;
+    const {modal, contributor,translationLanguages,selectLanguage,cur} =  this.props;
     const {content} = modal;
     return (
       <div className="modal fade" id="myModal" role="dialog">
@@ -87,10 +87,13 @@ class Modal extends React.Component {
                  })}
                 </select>
                 <h3 id="labelView">{content[selectLanguage].word ? "Translation: "+content[selectLanguage].word : "Language not yet supported!"}</h3>
-                <h4 id="labelContributed">{contributor.length > 0 ? "Contributed by: "+ contributor[0].profile.firstName +" "+ contributor[0].profile.lastName : "Be the one to Translate!"}</h4>
+                <h4 id="labelContributed">{contributor.length > 0 ?
+                  contributor[0]._id == cur ? "Contributed by: You":
+                  "Contributed by: "+ contributor[0].profile.firstName +" "+ contributor[0].profile.lastName : "Be the one to Translate!"}</h4>
                 {
                   contributor[0] ?
-                  <h6 id="labelContact"><a href={`mailto:${contributor[0].profile.email}?subject=Feedback&body=Message`}> {contributor.length > 0 ? "Contact Contributor" : ""}</a></h6>:""
+                    contributor[0]._id == cur ? "":
+                   <h6 id="labelContact"><a href={`mailto:${contributor[0].profile.email}?subject=Feedback&body=Message`}> {contributor.length > 0 ? "Contact Contributor" : ""}</a></h6>:""
                 }
                 </div>
             </div>
@@ -101,7 +104,7 @@ class Modal extends React.Component {
   }
 
   renderTranslation(){
-    const {modal, contributor,categories,translationLanguages,selectLanguage} =  this.props;
+    const {modal, contributor,categories,translationLanguages,selectLanguage,cur} =  this.props;
     const {content} = modal;
     return (
       <div className="modal fade" id="myModal" role="dialog">
@@ -129,9 +132,12 @@ class Modal extends React.Component {
                  })}
                 </select>
                 <h3 id="labelView">{content[selectLanguage].word ? "Translation: "+content[selectLanguage].word : "Language not yet supported!"}</h3>
-                <h4 id="labelContributed">{contributor.length > 0 ? "Contributed by: "+ contributor[0].profile.firstName +" "+ contributor[0].profile.lastName : "Be the one to Translate!"}</h4>
+                <h4 id="labelContributed">{contributor.length > 0 ?
+                  contributor[0]._id == cur ? "Contributed by: You":
+                  "Contributed by: "+ contributor[0].profile.firstName +" "+ contributor[0].profile.lastName : "Be the one to Translate!"}</h4>
                 {
                   contributor[0] ?
+                  contributor[0]._id == cur ? "":
                   <h6 id="labelContact"><a href={`mailto:${contributor[0].profile.email}?subject=Feedback&body=Message`}> {contributor.length > 0 ? "Contact Contributor" : ""}</a></h6>:""
                 }
                 {

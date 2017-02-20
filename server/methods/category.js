@@ -169,5 +169,44 @@ export default function () {
       Category.remove({_id:categoryId});
     },
 
+    'updateCategory'(categoryId, formData) {
+      check(categoryId, String);
+      check(formData , {
+        word : String,
+        contributor : [String],
+        language: String
+      });
+
+      const selector = {
+        _id : categoryId
+      };
+
+      const options = {
+        $set : {
+          [""+formData.language] : {
+            word : formData.word,
+            contributor : formData.contributor
+          }
+        }
+      };
+      Category.update(selector, options);
+    },
+
+    'updateImageCategory'(categoryId, image) {
+      check(categoryId, String);
+      check(image, String);
+
+      const selector = {
+        _id : categoryId
+      };
+
+      const options = {
+        $set : {
+          image: [image]
+        }
+      };
+      Category.update(selector, options);
+    },
+
   });
 }

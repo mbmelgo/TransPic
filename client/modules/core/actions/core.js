@@ -14,7 +14,7 @@ export default {
     if(!formData.profile.email)return LocalState.set('ACCOUNT_ERROR','Email is Required');
 
     Meteor.call("addUser",formData, function (err){
-      if(err) return LocalState.set('ACCOUNT_ERROR',err);
+      if(err) return LocalState.set('ACCOUNT_ERROR',err.message);
       else { FlowRouter.go('/admin_home');}
     });
   },
@@ -44,6 +44,27 @@ export default {
         "ADD_CATEGORY_ERROR": null,
         "ADD_TRANSLATION_ERROR": null
       });
+    }
+    reader.readAsDataURL(imageFile);
+  },
+
+  changeImage({LocalState,Meteor}, imageFile,categoryId){
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      const image = e.target.result;
+      Meteor.call('updateImageCategory',categoryId, image, function (err) {
+        if (err) {
+          return LocalState.set({
+            'UPDATE_CATEGORY_ERROR': err
+          });
+        }
+        else {
+          return LocalState.set({
+            'UPDATE_CATEGORY_SUCCESS': "Category Image Updated",
+            'imageUpdate': image
+          });
+        }
+      })
     }
     reader.readAsDataURL(imageFile);
   },
@@ -220,7 +241,6 @@ export default {
 
   addCategory({Meteor, LocalState, FlowRouter, Collections}, formData){
     var hasOneTranslation = false;
-
     if(!formData.image) return LocalState.set('ADD_CATEGORY_ERROR','Atleast 1 image of the new category is required');
     if (!hasOneTranslation && formData.afrikaans.word) hasOneTranslation = true;
     if (!hasOneTranslation && formData.albanian.word) hasOneTranslation = true;
@@ -385,6 +405,47 @@ export default {
     });
   },
 
+  updateCategory({Meteor, LocalState, Collections}, formData, category,translationLanguages){
+    var del = false;
+    if(!formData.word && category[formData.language].word) {
+      var canBeDeleted = false;
+      translationLanguages.map(function(language){
+        if (category[language._id].word && language._id != formData.language) {
+          canBeDeleted = true;
+        }
+      });
+      if (!canBeDeleted) {
+        return LocalState.set('UPDATE_CATEGORY_ERROR',"This is the last translation of the word! Can't remove translation!");
+      } else {
+        del = true;
+      }
+    }
+
+    if(!formData.word && !category[formData.language].word) {
+        return LocalState.set('UPDATE_CATEGORY_ERROR',"Input the translation!");
+    }
+
+    if(!formData.contributor) return LocalState.set('UPDATE_CATEGORY_ERROR','Contributor is required');
+    if(!formData.language) return LocalState.set('UPDATE_CATEGORY_ERROR','Language is required');
+    if(!category._id) return LocalState.set('UPDATE_CATEGORY_ERROR','ID is required');
+    if (del) {
+      formData.contributor = [];
+    }
+    Meteor.call("updateCategory",category._id,formData, function (err){
+      if(err) return LocalState.set({
+        'UPDATE_CATEGORY_SUCCESS': null,
+        'UPDATE_CATEGORY_ERROR': err.message,
+        });
+      else { return LocalState.set({
+        'UPDATE_CATEGORY_SUCCESS': "Category Updated",
+        'UPDATE_CATEGORY_ERROR': null,
+        "contributor": formData.contributor[0]
+        });
+      }
+    });
+
+  },
+
   goBackHome({FlowRouter}){
     FlowRouter.go('/admin_home');
   },
@@ -414,7 +475,9 @@ export default {
   setLanguageSelectedView({LocalState},params){
     return LocalState.set({
       languageSelected: params.selectLanguage,
-      contributor: params.contributor
+      contributor: params.contributor,
+      'UPDATE_CATEGORY_SUCCESS': null,
+      'UPDATE_CATEGORY_ERROR': null,
     });
   },
 
@@ -434,6 +497,16 @@ export default {
   clearDeleteCategoryErrors({LocalState}){
     return LocalState.set({
       "DELETE_CATEGORY_ERROR": null,
+    });
+  },
+
+  clearUpdateCategoryErrors({LocalState}){
+    return LocalState.set({
+      "UPDATE_CATEGORY_ERROR": null,
+      "contributor": null,
+      "languageSelected": null,
+      "imageUpdate": null,
+      "UPDATE_CATEGORY_SUCCESS": null
     });
   },
 

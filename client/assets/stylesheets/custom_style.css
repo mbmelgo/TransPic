@@ -200,9 +200,20 @@ div#main-layout {
   width: 50%;
 }
 
+#labelUpdate{
+  text-align: left;
+  font-family: 'Slabo 30px', serif !important;
+}
+
 #inputAddTranslation{
   width: 50%;
 }
+
+#inputUpdate{
+  width: 70%;
+  margin-top: 2.3%;
+}
+
 
 #addTranslationFormGroup{
   height: 250px;
@@ -267,7 +278,9 @@ div#main-layout {
   height: 250px;
 }
 
-
+#updateHeading{
+  height: 38px;
+}
 
 #imageT {
   width: 60%;

@@ -146,13 +146,20 @@ export const composer = ({context,id}, onData) => {
     {_id:"zapotec",name: "Zapotec"},
     {_id:"zulu",name: "Zulu"}
   ];
-  const contributor_id = LocalState.get('contributor') ? LocalState.get('contributor') : "";
-  const selectLanguage = LocalState.get('languageSelected') ? LocalState.get('languageSelected') : "afrikaans";
+  var contributor_id = LocalState.get('contributor') ? LocalState.get('contributor') : "";
+  const selectedLanguage = LocalState.get('languageSelected') ? LocalState.get('languageSelected') : "afrikaans";
+  const image = LocalState.get('imageUpdate');
+  const error = LocalState.get('UPDATE_CATEGORY_ERROR');
+  const success = LocalState.get('UPDATE_CATEGORY_SUCCESS');
   if (Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getSpecificCategory",id.id).ready()) {
-    const contributor = Meteor.users.find(contributor_id).fetch();
     const cat = Collections.Category.find({_id:id.id}).fetch();
     const category = cat[0];
-    onData(null, {category,translationLanguages,contributor,selectLanguage});
+    if (selectedLanguage == "afrikaans") {
+      contributor_id = category.afrikaans.contributor[0];
+    }
+    const contributor = Meteor.users.find(contributor_id).fetch();
+    const cur = Meteor.userId();
+    onData(null, {category,translationLanguages,contributor,selectedLanguage,cur,image,error,success});
   }
 };
 
@@ -160,6 +167,9 @@ export const depsMapper = (context, actions) => ({
   signoutUser: actions.core.signoutUser,
   goBackHome: actions.core.goBackHome,
   setLanguageSelectedView: actions.core.setLanguageSelectedView,
+  updateCategory: actions.core.updateCategory,
+  changeImage: actions.core.changeImage,
+  clearUpdateCategoryErrors: actions.core.clearUpdateCategoryErrors,
   context: () => context
 });
 
