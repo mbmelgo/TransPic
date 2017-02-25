@@ -67,26 +67,23 @@ class Updatecategory extends React.Component {
           </div>
         </nav>
         <div id="addBox">
-          <div className="panel panel-success" id="addPopOut">
+          <div className="panel panel-success" id="updatePopOut">
             <div className="panel-heading" id="updateHeading">
               <a className="col-md-5" onClick={this.goBackHome.bind(this)}><span className="glyphicon glyphicon-arrow-left" aria-hidden="true" /></a>
               <h3 className="col-md-7 panel-title" id="labelUpdate">Update Category</h3>
             </div>
             <div className="panel-body">
               {error ? Bert.alert( error, 'danger', 'fixed-top', 'fa-frown-o' ):success ? Bert.alert( success, 'success', 'fixed-top', 'fa-smile-o' ):""}
-              <div className='form-group col-md-6' id="verticalLine">
+              <div className='form-group col-md-6' id="verticalLineUpdate">
                 <div className="row">
                   <div className="col-sm-12 col-md-12">
-                    <div className="thumbnail" id="imageThmbnail">
+                    <div className="thumbnail" id="imageThmbnailUpdate">
                       {
-                        image ? <img className="img-rounded" src={image} alt="..." id='image'/>:
-                        <img className="img-rounded" src={category.image} alt="..." id='image'/>
+                        image ? <img className="img-rounded" src={image} alt="..." id='imageUpdate'/>:
+                        <img className="img-rounded" src={category.image} alt="..." id='imageUpdate'/>
                       }
                     </div>
-                    {category[selectedLanguage].word ?
-                      ((contributor[0] && contributor[0]._id == cur)? <label type="button" className="btn btn-info btn-file" id='addImage' >Change<input type="file" ref='image' onChange={this.changeImage.bind(this)}/></label>: "")
-                      :<label type="button" className="btn btn-info btn-file" id='addImage' >Change<input type="file" ref='image' onChange={this.changeImage.bind(this)}/></label>
-                    }
+                    <label type="button" className="btn btn-info btn-file" id='addImageUp' >Change<input type="file" ref='image' onChange={this.changeImage.bind(this)}/></label>
                   </div>
                 </div>
               </div>
@@ -123,7 +120,7 @@ class Updatecategory extends React.Component {
                   <button type="button" className="col-md-3 btn btn-primary navbar-btn pull-right" id='btn' onClick={this.updateCategory.bind(this)}>Save</button>
                 }
               </div>
-              </div>
+            </div>
           </div>
         </div>
       </div>

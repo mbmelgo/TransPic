@@ -164,7 +164,7 @@ export const composer = ({context,modal}, onData) => {
       if (selectLanguage == "afrikaans") {
         contributor_id = modal.content.afrikaans.contributor[0];
       }
-      const categories = Collections.Category.find({ _id: { $all: content.categoryId } }).fetch();
+      const categories = Collections.Category.find({ _id: { $in: content.categoryId } }).fetch();
       const contributor = Meteor.users.find(contributor_id).fetch();
       onData(null, {modal,categories,contributor,translationLanguages,selectLanguage,cur});
     }
@@ -175,6 +175,7 @@ export const depsMapper = (context, actions) => ({
   deleteCategory: actions.core.deleteCategory,
   deleteTranslation: actions.core.deleteTranslation,
   setLanguageSelectedView: actions.core.setLanguageSelectedView,
+  clearModal: actions.core.clearModal,
   context: () => context
 });
 

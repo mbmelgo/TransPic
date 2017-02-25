@@ -5,6 +5,11 @@ class Modal extends React.Component {
     super(props);
   }
 
+  componentWillUnmount(){
+    const {clearModal} = this.props;
+    clearModal();
+  }
+
   render() {
     const {modal} =  this.props;
     if (modal.isCategory) {

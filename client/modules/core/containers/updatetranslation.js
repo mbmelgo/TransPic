@@ -1,9 +1,9 @@
 import {useDeps, composeAll, composeWithTracker, compose} from 'mantra-core';
-import {Bert} from 'meteor/themeteorchef:bert';
-import Addtranslation from '../components/addtranslation.jsx';
 
-export const composer = ({context}, onData) => {
-  const {Meteor, LocalState,Collections} = context();
+import Updatetranslation from '../components/updatetranslation.jsx';
+
+export const composer = ({context, id}, onData) => {
+  const {Meteor, Collections, LocalState} = context();
   const translationLanguages = [
     {_id:"afrikaans",name: "Afrikaans"},
     {_id:"albanian",name: "Albanian"},
@@ -146,29 +146,40 @@ export const composer = ({context}, onData) => {
     {_id:"zapotec",name: "Zapotec"},
     {_id:"zulu",name: "Zulu"}
   ];
-  const error = LocalState.get("ADD_TRANSLATION_ERROR");
-  const image = LocalState.get('image');
-  const selectLanguage = LocalState.get('languageSelected') ? LocalState.get('languageSelected') : "afrikaans";
-  if (Meteor.subscribe("getAllCategory",selectLanguage).ready()) {
-    const selector = {};
-    selector[selectLanguage] = 1;
-    const allCategory = Collections.Category.find({},selector).fetch();
-    onData(null, {error,image,allCategory,translationLanguages,selectLanguage});
+  var contributor_id = LocalState.get('contributor') ? LocalState.get('contributor') : "";
+  const selectedLanguage = LocalState.get('languageSelected') ? LocalState.get('languageSelected') : "afrikaans";
+  const image = LocalState.get('imageUpdate');
+  const error = LocalState.get('UPDATE_TRANSLATION_ERROR');
+  const success = LocalState.get('UPDATE_TRANSLATION_SUCCESS');
+  if (Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getSpecificTranslation",id.id).ready()) {
+    const trans = Collections.Translation.find({_id:id.id}).fetch();
+    const translation = trans[0];
+    if (Meteor.subscribe("getAllCategory",selectedLanguage).ready()) {
+      const selector = {};
+      selector[selectedLanguage] = 1;
+      const allCategory = Collections.Category.find({},selector).fetch();
+      if (selectedLanguage == "afrikaans") {
+        contributor_id = translation.afrikaans.contributor[0];
+      }
+      const contributor = Meteor.users.find(contributor_id).fetch();
+      const cur = Meteor.userId();
+      onData(null, {translation,translationLanguages,contributor,selectedLanguage,cur,image,error,success,allCategory});
+    }
   }
 };
 
 export const depsMapper = (context, actions) => ({
-  addTranslation: actions.core.addTranslation,
-  addImage: actions.core.addImage,
-  removeImage: actions.core.removeImage,
-  goBackHome: actions.core.goBackHome,
   signoutUser: actions.core.signoutUser,
-  setLanguageSelected: actions.core.setLanguageSelected,
-  clearAddTranslationErrors: actions.core.clearAddTranslationErrors,
+  goBackHome: actions.core.goBackHome,
+  setLanguageSelectedView: actions.core.setLanguageSelectedView,
+  updateTranslation: actions.core.updateTranslation,
+  updateCategoryTranslation: actions.core.updateCategoryTranslation,
+  changeImageTrans: actions.core.changeImageTrans,
+  clearUpdateTranslationErrors: actions.core.clearUpdateTranslationErrors,
   context: () => context
 });
 
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(Addtranslation);
+)(Updatetranslation);

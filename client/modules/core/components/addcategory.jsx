@@ -32,7 +32,7 @@ class Addcategory extends React.Component {
         contributor: self.refs[language._id].value ? [Meteor.userId()] : []
       }
     });
-    addCategory(formData);
+    addCategory(formData,translationLanguages);
   }
 
   addImage(e){

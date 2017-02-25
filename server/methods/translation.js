@@ -169,5 +169,60 @@ export default function () {
       check(translationId, String);
       Translation.remove({_id:translationId});
     },
+
+    'updateTranslation'(translationId, formData) {
+      check(translationId, String);
+      check(formData , {
+        word : String,
+        contributor : [String],
+        language: String
+      });
+
+      const selector = {
+        _id : translationId
+      };
+
+      const options = {
+        $set : {
+          [""+formData.language] : {
+            word : formData.word,
+            contributor : formData.contributor
+          }
+        }
+      };
+      Translation.update(selector, options);
+    },
+
+    'updateImageTranslation'(translationId, image) {
+      check(translationId, String);
+      check(image, String);
+
+      const selector = {
+        _id : translationId
+      };
+
+      const options = {
+        $set : {
+          image: [image]
+        }
+      };
+      Translation.update(selector, options);
+    },
+
+    'updateCategoryTranslation'(translationId, categoryIds) {
+      check(translationId, String);
+      check(categoryIds, [String]);
+
+      const selector = {
+        _id : translationId
+      };
+
+      const options = {
+        $set : {
+          categoryId: categoryIds
+        }
+      };
+      Translation.update(selector, options);
+    },
   });
 }

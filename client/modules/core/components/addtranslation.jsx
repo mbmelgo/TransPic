@@ -40,7 +40,7 @@ class Addtranslation extends React.Component {
         contributor: self.refs[language._id].value ? [Meteor.userId()] : []
       }
     });
-    addTranslation(formData);
+    addTranslation(formData,translationLanguages);
 
   }
 
@@ -129,7 +129,7 @@ class Addtranslation extends React.Component {
                          <div className="form-check">
                             {allCategory.map(function(category){
                               return (
-                                <label className="form-check-label" id='labelCategoryCheckBoxes' key={category._id}>
+                                <label className="col-md-12 form-check-label" id='labelCategoryCheckBoxes' key={category._id}>
                                   <input type="checkbox" className="form-check-input" name="categoryCheckBoxes" id={category._id} value={category._id}  />
                                   {category[selectLanguage].word ? "  "+category[selectLanguage].word: "Language not yet supported!"}
                                 </label>

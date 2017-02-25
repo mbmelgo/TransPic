@@ -1,8 +1,8 @@
 const {describe, it} = global;
 import {expect} from 'chai';
 import {shallow} from 'enzyme';
-import Viewcategory from '../viewcategory';
+import Updatetranslation from '../updatetranslation';
 
-describe('core.components.viewcategory', () => {
+describe('core.components.updatetranslation', () => {
   it('should do something');
 });

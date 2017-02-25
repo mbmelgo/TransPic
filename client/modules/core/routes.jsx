@@ -8,6 +8,7 @@ import AdminHome from './containers/adminhome.js';
 import AddTranslation from './containers/addtranslation.js';
 import AddCategory from './containers/addcategory.js';
 import UpdateCategory from './containers/updatecategory.js';
+import UpdateTranslation from './containers/updatetranslation.js';
 
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
@@ -69,11 +70,21 @@ export default function (injectDeps, {FlowRouter}) {
   });
 
   FlowRouter.route('/update_category/:id', {
-    name: '',
+    name: 'update_category',
     triggersEnter: [authenticate],
     action(id) {
       mount(MainLayoutCtx, {
         content: () => (<UpdateCategory id={id} />)
+      });
+    }
+  });
+
+  FlowRouter.route('/update_translation/:id', {
+    name: 'update_translation',
+    triggersEnter: [authenticate],
+    action(id) {
+      mount(MainLayoutCtx, {
+        content: () => (<UpdateTranslation id={id} />)
       });
     }
   });
