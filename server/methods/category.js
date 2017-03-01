@@ -67,6 +67,7 @@ export default function () {
         inuit: Object,
         irishGaelic: Object,
         italian: Object,
+        japanese: Object,
         kiche: Object,
         kabyle: Object,
         kannada: Object,

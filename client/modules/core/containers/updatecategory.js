@@ -65,6 +65,7 @@ export const composer = ({context,id}, onData) => {
     {_id:"inuit",name: "Inuit"},
     {_id:"irishGaelic",name: "Irish Gaelic"},
     {_id:"italian",name: "Italian"},
+    {_id:"japanese",name: "Japanese"},
     {_id:"kiche",name: "K'iche'"},
     {_id:"kabyle",name: "Kabyle"},
     {_id:"kannada",name: "Kannada"},
