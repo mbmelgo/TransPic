@@ -9,6 +9,7 @@ import AddTranslation from './containers/addtranslation.js';
 import AddCategory from './containers/addcategory.js';
 import UpdateCategory from './containers/updatecategory.js';
 import UpdateTranslation from './containers/updatetranslation.js';
+import Forbidden from './components/forbidden.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
   const MainLayoutCtx = injectDeps(MainLayout);
@@ -88,6 +89,15 @@ export default function (injectDeps, {FlowRouter}) {
       });
     }
   });
+
+  FlowRouter.notFound = {
+    name: 'not-found',
+    action() {
+      mount(MainLayoutCtx, {
+        content: () => (<Forbidden />)
+      });
+    }
+  }
 
   function authenticate(){
     if(!Meteor.userId()){

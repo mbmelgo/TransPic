@@ -115,6 +115,20 @@ div#main-layout {
   width: 75%;
 }
 
+#innerForbidden {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+#forbiddenPanel{
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  width: 50%;
+  height: 50%;
+}
+
 #labelCategory{
   text-align: right;
   font-family: 'Slabo 27px', serif !important;
