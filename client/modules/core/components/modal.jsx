@@ -77,6 +77,7 @@ class Modal extends React.Component {
                 </a>
                 <ul className="dropdown-menu pull-right">
                   <li><a href="#" className="close" data-dismiss="modal" id="modalButton">Close</a></li>
+                  <li><a href="#" className="close" data-dismiss="modal" id="modalButton">View All Words</a></li>
                   <li><a href="#" className="close" data-dismiss="modal" id="modalButton" onClick={this.closeModalCategory.bind(this)}>Update</a></li>
                   <li><a href="#" className="close" data-dismiss="modal" id="modalButton" onClick={this.deleteCategory.bind(this)}>Delete</a></li>
                 </ul>

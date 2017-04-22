@@ -272,7 +272,9 @@ export default {
     return LocalState.set({
       searchLanguage: parameters.searchLanguage,
       searchItem: parameters.searchItem,
-      wordSelected: parameters.wordSelected
+      wordSelected: parameters.wordSelected,
+      getAll: false,
+      limit: 8
     });
   },
 
@@ -296,6 +298,25 @@ export default {
   showModal({LocalState},modal){
     return LocalState.set({
       modal: modal
+    });
+  },
+
+  getAll({LocalState},searchLanguage){
+    return LocalState.set({
+      getAll: true,
+      limit: 8
+    });
+  },
+
+  setLimit({LocalState},limit){
+    return LocalState.set({
+      limit: limit
+    });
+  },
+
+  changeLanguageSelected({LocalState},languageSelected){
+    return LocalState.set({
+      searchLanguage: languageSelected
     });
   },
 
@@ -350,7 +371,9 @@ export default {
     return LocalState.set({
       searchLanguage: null,
       searchItem: null,
-      wordSelected: null
+      wordSelected: null,
+      getAll: false,
+      limit: 8
     });
   },
 

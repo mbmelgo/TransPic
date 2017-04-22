@@ -38,13 +38,14 @@ class Category extends React.Component {
                </a>
                <ul className="dropdown-menu">
                  <li><a href="#" data-toggle="modal" data-target="#myModal" onClick={this.showModal.bind(this)}>View</a></li>
+                 <li><a href="#" >View All Words</a></li>
                  <li><a href={`/update_category/${categoryDetails._id}`} >Update</a></li>
                  <li><a href="#" onClick={this.deleteCategory.bind(this)}>Delete</a></li>
                </ul>
              </div>
             <img className='img-rounded'  id="searchResultsImage" src={categoryDetails.image}/>
             <div className='caption' id='labelView' >
-              {categoryDetails[selectedLanguage].word}
+              {categoryDetails[selectedLanguage].word ? categoryDetails[selectedLanguage].word : "Language not yet Supported"}
             </div>
           </div>
         </div>

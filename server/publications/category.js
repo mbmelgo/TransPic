@@ -3,16 +3,18 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
 export default function () {
-  Meteor.publish('searchCategory', function (searchItem,searchLanguage) {
+  Meteor.publish('searchCategory', function (searchItem,searchLanguage,limit) {
     var query = {};
     var l = searchLanguage + ".word";
     query[l] = {$regex:searchItem,$options:"i"}
-    return Category.find(query);
+    return Category.find(query,{limit:limit});
   });
 
-  Meteor.publish('getAllCategory', function (selectedLanguage) {
+  Meteor.publish('getAllCategory', function (searchLanguage,limit) {
     const selector = {};
-    selector[selectedLanguage] = 1;
+    var l = searchLanguage + ".word";
+    selector[l] = -1;
+    selector["limit"] = limit;
     return Category.find({},selector);
   });
 

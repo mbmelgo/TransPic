@@ -3,16 +3,18 @@ import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
 export default function () {
-  Meteor.publish('searchTranslation', function (searchItem,searchLanguage) {
+  Meteor.publish('searchTranslation', function (searchItem,searchLanguage,limit) {
     var query = {};
     var l = searchLanguage + ".word";
     query[l] = {$regex:searchItem,$options:"i"}
-    return Translation.find(query);
+    return Translation.find(query,{limit:limit});
   });
 
-  Meteor.publish('getAllTranslation', function (selectedLanguage) {
+  Meteor.publish('getAllTranslation', function (searchLanguage,limit) {
     const selector = {};
-    selector[selectedLanguage] = 1;
+    var l = searchLanguage + ".word";
+    selector[l] = 1;
+    selector["limit"] = limit;
     return Translation.find({},selector);
   });
 

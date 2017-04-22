@@ -151,20 +151,39 @@ export const composer = ({context}, onData) => {
   var searchLanguage = "afrikaans";
   var wordSelected = LocalState.get('wordSelected');
   var modal = LocalState.get('modal');
+  var getAll = LocalState.get('getAll');
+  var limit =  LocalState.get('limit');
+  if(getAll == null){
+    getAll = false;
+  }
+  if(limit == null){
+    limit = 8;
+  }
   LocalState.get("searchLanguage") ? searchLanguage = LocalState.get('searchLanguage') : searchLanguage = "afrikaans";
   LocalState.get("searchItem") ? searchItem = LocalState.get('searchItem') : searchItem = "";
-  if (Meteor.subscribe("searchCategory", searchItem,searchLanguage).ready() &&
-      Meteor.subscribe("searchTranslation", searchItem,searchLanguage).ready()) {
+  if (!getAll && Meteor.subscribe("searchCategory", searchItem,searchLanguage,limit).ready() &&
+      Meteor.subscribe("searchTranslation", searchItem,searchLanguage,limit).ready()) {
       var results = [];
       var query = {};
       var l = searchLanguage + ".word";
       query[l] = {$regex:searchItem,$options:"i"};
       if (searchItem.length > 0) {
         wordSelected ?
-          results = Collections.Translation.find(query).fetch() :
-          results = Collections.Category.find(query).fetch()
+          results = Collections.Translation.find(query,{limit:limit}).fetch() :
+          results = Collections.Category.find(query,{limit:limit}).fetch()
       }
-      onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal});
+      onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal,limit});
+  } else if (getAll && Meteor.subscribe("getAllCategory", searchLanguage,limit).ready() &&
+      Meteor.subscribe("getAllCategory", searchLanguage,limit).ready()) {
+      var results = [];
+      const selector = {};
+      var l = searchLanguage + ".word";
+      selector[l] = 1;
+      selector["limit"] = limit;
+      wordSelected ?
+        results = Collections.Translation.find({},selector).fetch() :
+        results = Collections.Category.find({},selector).fetch()
+      onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal,limit});
   }
 };
 
@@ -175,6 +194,9 @@ export const depsMapper = (context, actions) => ({
   showModal: actions.core.showModal,
   goToAddTranslation: actions.core.goToAddTranslation,
   goToAddCategory: actions.core.goToAddCategory,
+  getAll: actions.core.getAll,
+  setLimit: actions.core.setLimit,
+  changeLanguageSelected: actions.core.changeLanguageSelected,
   clearSearchErrors: actions.core.clearSearchErrors,
   context: () => context
 });
