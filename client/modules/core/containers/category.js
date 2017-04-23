@@ -12,6 +12,7 @@ export const composer = ({context,categoryDetails,selectedLanguage}, onData) => 
 
 export const depsMapper = (context, actions) => ({
   clearDeleteCategoryErrors: actions.core.clearDeleteCategoryErrors,
+  updateResults: actions.core.updateResults,
   deleteCategory: actions.core.deleteCategory,
   context: () => context
 });

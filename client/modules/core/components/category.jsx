@@ -26,6 +26,11 @@ class Category extends React.Component {
     showModal(modal);
   }
 
+  showTranslations(){
+    const {translations,updateResults} = this.props;
+    updateResults(translations);
+  }
+
   render() {
     const {categoryDetails,selectedLanguage} = this.props;
     if(categoryDetails) {
@@ -38,7 +43,7 @@ class Category extends React.Component {
                </a>
                <ul className="dropdown-menu">
                  <li><a href="#" data-toggle="modal" data-target="#myModal" onClick={this.showModal.bind(this)}>View</a></li>
-                 <li><a href="#" >View All Words</a></li>
+                 <li><a href="#" onClick={this.showTranslations.bind(this)}>View All Words</a></li>
                  <li><a href={`/update_category/${categoryDetails._id}`} >Update</a></li>
                  <li><a href="#" onClick={this.deleteCategory.bind(this)}>Delete</a></li>
                </ul>

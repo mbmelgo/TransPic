@@ -158,6 +158,7 @@ export const composer = ({context, id}, onData) => {
     if (Meteor.subscribe("getAllCategories",selectedLanguage).ready()) {
       const selector = {};
       var s = {};
+      var l = selectedLanguage + ".word";
       s[l] = 1;
       selector["sort"] = s;
       const allCategory = Collections.Category.find({},selector).fetch();

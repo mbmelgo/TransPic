@@ -172,6 +172,8 @@ export const composer = ({context}, onData) => {
           results = Collections.Translation.find(query,{limit:limit}).fetch() :
           results = Collections.Category.find(query,{limit:limit}).fetch()
       }
+      wordSelected ? "" : LocalState.get('results') ? results = LocalState.get('results') : ""
+      //results = results.slice(0, limit);
       onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal,limit});
   } else if (getAll && Meteor.subscribe("getAllCategory", searchLanguage,limit).ready() &&
       Meteor.subscribe("getAllTranslation", searchLanguage,limit).ready()) {
@@ -185,6 +187,8 @@ export const composer = ({context}, onData) => {
       wordSelected ?
         results = Collections.Translation.find({},selector).fetch() :
         results = Collections.Category.find({},selector).fetch()
+      wordSelected ? "" : LocalState.get('results') ? results = LocalState.get('results') : ""
+      //results = results.slice(0, limit);
       onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal,limit});
   }
 };

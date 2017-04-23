@@ -265,8 +265,8 @@ export default {
       return LocalState.set({
         wordSelected:true,
         getAll: false,
+        results: null,
         limit: 8
-
       });
     } else {
       return LocalState.set({
@@ -283,6 +283,7 @@ export default {
       searchItem: parameters.searchItem,
       wordSelected: parameters.wordSelected,
       getAll: false,
+      results: null,
       limit: 8
     });
   },
@@ -313,7 +314,8 @@ export default {
   getAll({LocalState},searchLanguage){
     return LocalState.set({
       getAll: true,
-      limit: 8
+      results: null,
+      limit: 8,
     });
   },
 
@@ -325,7 +327,15 @@ export default {
 
   changeLanguageSelected({LocalState},languageSelected){
     return LocalState.set({
-      searchLanguage: languageSelected
+      searchLanguage: languageSelected,
+    });
+  },
+
+  updateResults({LocalState},results){
+    return LocalState.set({
+      results: results,
+      getAll: false,
+      limit: 8,
     });
   },
 
@@ -381,6 +391,7 @@ export default {
       searchLanguage: null,
       searchItem: null,
       wordSelected: null,
+      results: null,
       getAll: false,
       limit: 8
     });
@@ -389,7 +400,8 @@ export default {
   clearModal({LocalState}){
     return LocalState.set({
       contributor: null,
-      languageSelected: null
+      languageSelected: null,
+      results: null,
     });
   },
 

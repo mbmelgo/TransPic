@@ -103,7 +103,7 @@ class Adminhome extends React.Component {
                 Category
               </label>
              <label className="radio-inline form-check-label" id='labelCategory'>
-               <input type="radio" className="form-check-input" name="searchOptions" id="wordOption" value="word" onClick={this.selectWordOption.bind(this)}/>
+               <input type="radio" className="form-check-input" name="searchOptions" id="wordOption" value="word" onClick={this.selectWordOption.bind(this)} />
                Word
              </label>
            </div>

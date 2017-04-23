@@ -176,6 +176,7 @@ export const depsMapper = (context, actions) => ({
   deleteCategory: actions.core.deleteCategory,
   deleteTranslation: actions.core.deleteTranslation,
   setLanguageSelectedView: actions.core.setLanguageSelectedView,
+  updateResults: actions.core.updateResults,
   clearModal: actions.core.clearModal,
   context: () => context
 });

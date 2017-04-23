@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "bootstrap": "^3.3.7",
     "bootstrap-webpack": "0.0.5",
     "mantra-core": "^1.2.0",
