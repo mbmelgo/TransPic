@@ -150,9 +150,12 @@ export const composer = ({context}, onData) => {
   const error = LocalState.get("ADD_TRANSLATION_ERROR");
   const image = LocalState.get('image');
   const selectLanguage = LocalState.get('languageSelected') ? LocalState.get('languageSelected') : "afrikaans";
-  if (Meteor.subscribe("getAllCategory",selectLanguage).ready()) {
+  if (Meteor.subscribe("getAllCategories",selectLanguage).ready()) {
     const selector = {};
-    selector[selectLanguage] = 1;
+    var l = selectLanguage + ".word";
+    var s = {};
+    s[l] = 1;
+    selector["sort"] = s;
     const allCategory = Collections.Category.find({},selector).fetch();
     onData(null, {error,image,allCategory,translationLanguages,selectLanguage});
   }

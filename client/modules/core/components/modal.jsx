@@ -34,10 +34,9 @@ class Modal extends React.Component {
 
   deleteCategory(e){
     e.preventDefault();
-    const {deleteCategory,categoryDetails,translations} = this.props;
+    const {deleteCategory,modal,translations} = this.props;
     if (translations.length <= 0 ) {
-      const {_id} = categoryDetails;
-      deleteCategory(_id);
+      deleteCategory(modal.content._id);
     } else {
       Bert.alert( "Deletion failed due to category is being used by "+translations.length+" translation/s.", 'danger', 'fixed-top', 'fa-frown-o' )
     }

@@ -13,8 +13,19 @@ export default function () {
   Meteor.publish('getAllCategory', function (searchLanguage,limit) {
     const selector = {};
     var l = searchLanguage + ".word";
-    selector[l] = -1;
+    var s = {};
+    s[l] = 1;
+    selector["sort"] = s;
     selector["limit"] = limit;
+    return Category.find({},selector);
+  });
+
+  Meteor.publish('getAllCategories', function (searchLanguage) {
+    const selector = {};
+    var l = searchLanguage + ".word";
+    var s = {};
+    s[l] = 1;
+    selector["sort"] = s;
     return Category.find({},selector);
   });
 

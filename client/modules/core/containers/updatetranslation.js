@@ -155,9 +155,11 @@ export const composer = ({context, id}, onData) => {
   if (Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getSpecificTranslation",id.id).ready()) {
     const trans = Collections.Translation.find({_id:id.id}).fetch();
     const translation = trans[0];
-    if (Meteor.subscribe("getAllCategory",selectedLanguage).ready()) {
+    if (Meteor.subscribe("getAllCategories",selectedLanguage).ready()) {
       const selector = {};
-      selector[selectedLanguage] = 1;
+      var s = {};
+      s[l] = 1;
+      selector["sort"] = s;
       const allCategory = Collections.Category.find({},selector).fetch();
       if (selectedLanguage == "afrikaans") {
         contributor_id = translation.afrikaans.contributor[0];

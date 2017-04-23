@@ -262,9 +262,18 @@ export default {
 
   toggleWordCategorySelection({LocalState},wordSelected){
     if (wordSelected) {
-      return LocalState.set({wordSelected:true});
+      return LocalState.set({
+        wordSelected:true,
+        getAll: false,
+        limit: 8
+
+      });
     } else {
-      return LocalState.set({wordSelected:false});
+      return LocalState.set({
+        wordSelected:false,
+        getAll: false,
+        limit: 8
+      });
     }
   },
 

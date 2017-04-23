@@ -13,13 +13,15 @@ export default function () {
   Meteor.publish('getAllTranslation', function (searchLanguage,limit) {
     const selector = {};
     var l = searchLanguage + ".word";
-    selector[l] = 1;
+    var s = {};
+    s[l] = 1;
+    selector["sort"] = s;
     selector["limit"] = limit;
     return Translation.find({},selector);
   });
 
   Meteor.publish('getAllTranslationWithinThisCategory', function (categoryId) {
-    return Translation.find({},{$elemMatch: { categoryId: categoryId }});
+    return Translation.find({categoryId: {$elemMatch: { $eq: categoryId }}});
   });
 
   Meteor.publish('getSpecificTranslation', function (translationId) {

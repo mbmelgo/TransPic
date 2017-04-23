@@ -157,7 +157,7 @@ export const composer = ({context,modal}, onData) => {
         contributor_id = modal.content.afrikaans.contributor[0];
       }
       const contributor = Meteor.users.find(contributor_id).fetch();
-      const translations = Collections.Translation.find({},{$elemMatch: { categoryId: modal.content._id }}).fetch();
+      const translations = Collections.Translation.find({categoryId: {$elemMatch: { $eq: modal.content._id }}}).fetch();
       onData(null, {modal,contributor,translationLanguages,selectLanguage, translations,cur});
     }
   } else {

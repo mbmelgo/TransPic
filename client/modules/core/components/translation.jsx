@@ -41,7 +41,7 @@ class Translation extends React.Component {
                </div>
               <img className='img-rounded'  id="searchResultsImage" src={translationDetails.image}/>
               <div className='caption' id='labelView' >
-                {translationDetails[selectedLanguage].word}
+                {translationDetails[selectedLanguage].word ? translationDetails[selectedLanguage].word : "Language not yet supported!"}
               </div>
             </div>
           </div>

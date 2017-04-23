@@ -2,15 +2,13 @@
 Thesis
 
 
-A language translator using images as an interlingua. 
+A language translator using images as an interlingua.
 
 MeteorJS, React, MongoDB
 
 TO DO:
-	- Finish the 1000 words and find a picture that represents each word
-	- Categorize each words and find a picture that represents each category
-	- Apply search limit
-	- Add view all words and category button
+	- Implement viewing of all words from a category
+	- Add the words in the database
 	- Do pure testing
 
 Future Works:

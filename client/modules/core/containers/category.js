@@ -5,7 +5,7 @@ import Category from '../components/category.jsx';
 export const composer = ({context,categoryDetails,selectedLanguage}, onData) => {
   const {Meteor, Collections} = context();
   if (Meteor.subscribe("getAllTranslationWithinThisCategory",categoryDetails._id).ready()) {
-    const translations = Collections.Translation.find({},{$elemMatch: { categoryId: categoryDetails._id }}).fetch();
+    const translations = Collections.Translation.find({categoryId: {$elemMatch: { $eq: categoryDetails._id }}}).fetch();
     onData(null, {categoryDetails,selectedLanguage,translations});
   }
 };

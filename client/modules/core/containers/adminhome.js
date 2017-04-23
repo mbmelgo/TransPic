@@ -174,11 +174,13 @@ export const composer = ({context}, onData) => {
       }
       onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal,limit});
   } else if (getAll && Meteor.subscribe("getAllCategory", searchLanguage,limit).ready() &&
-      Meteor.subscribe("getAllCategory", searchLanguage,limit).ready()) {
+      Meteor.subscribe("getAllTranslation", searchLanguage,limit).ready()) {
       var results = [];
       const selector = {};
       var l = searchLanguage + ".word";
-      selector[l] = 1;
+      var s = {};
+      s[l] = 1;
+      selector["sort"] = s;
       selector["limit"] = limit;
       wordSelected ?
         results = Collections.Translation.find({},selector).fetch() :
