@@ -20,8 +20,8 @@ class Modal extends React.Component {
   }
 
   showTranslations(){
-    const {translations,updateResults} = this.props;
-    updateResults(translations);
+    const {modal,updateResults} = this.props;
+    updateResults(modal.content._id);
   }
 
   changeLanguage(e){

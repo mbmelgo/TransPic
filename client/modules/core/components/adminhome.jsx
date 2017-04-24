@@ -99,11 +99,11 @@ class Adminhome extends React.Component {
            <fieldset className="row form-group">
              <div className="form-check">
               <label className="radio-inline form-check-label" id='labelCategory'>
-                <input type="radio" className="form-check-input" name="searchOptions" id="categoryOption" value="category"  onClick={this.selectCategoryOption.bind(this)} defaultChecked/>
+                <input type="radio" className="form-check-input" name="searchOptions" id="categoryOption" value="category"  onChange={this.selectCategoryOption.bind(this)}  checked={wordSelected ? false : true}/>
                 Category
               </label>
              <label className="radio-inline form-check-label" id='labelCategory'>
-               <input type="radio" className="form-check-input" name="searchOptions" id="wordOption" value="word" onClick={this.selectWordOption.bind(this)} />
+               <input type="radio" className="form-check-input" name="searchOptions" id="wordOption" value="word" onChange={this.selectWordOption.bind(this)}  checked={wordSelected ? true : false}/>
                Word
              </label>
            </div>

@@ -20,7 +20,11 @@ export default function () {
     return Translation.find({},selector);
   });
 
-  Meteor.publish('getAllTranslationWithinThisCategory', function (categoryId) {
+  Meteor.publish('getAllTranslationWithinThisCategory', function (categoryId,limit) {
+    return Translation.find({categoryId: {$elemMatch: { $eq: categoryId }}},{limit:limit});
+  });
+
+  Meteor.publish('getAllTransWithinThisCategory', function (categoryId) {
     return Translation.find({categoryId: {$elemMatch: { $eq: categoryId }}});
   });
 

@@ -152,7 +152,7 @@ export const composer = ({context,modal}, onData) => {
   const selectLanguage = LocalState.get('languageSelected') ? LocalState.get('languageSelected') : "afrikaans";
   const cur = Meteor.userId();
   if (isCategory) {
-    if(Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getAllTranslationWithinThisCategory",modal.content._id).ready()){
+    if(Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getAllTransWithinThisCategory",modal.content._id).ready()){
       if (selectLanguage == "afrikaans") {
         contributor_id = modal.content.afrikaans.contributor[0];
       }

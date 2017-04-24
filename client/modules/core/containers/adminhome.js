@@ -161,35 +161,38 @@ export const composer = ({context}, onData) => {
   }
   LocalState.get("searchLanguage") ? searchLanguage = LocalState.get('searchLanguage') : searchLanguage = "afrikaans";
   LocalState.get("searchItem") ? searchItem = LocalState.get('searchItem') : searchItem = "";
-  if (!getAll && Meteor.subscribe("searchCategory", searchItem,searchLanguage,limit).ready() &&
-      Meteor.subscribe("searchTranslation", searchItem,searchLanguage,limit).ready()) {
-      var results = [];
-      var query = {};
-      var l = searchLanguage + ".word";
-      query[l] = {$regex:searchItem,$options:"i"};
-      if (searchItem.length > 0) {
+  if (LocalState.get("catId")){
+    if (Meteor.subscribe("getAllTranslationWithinThisCategory",LocalState.get("catId"),limit).ready()) {
+      const results = Collections.Translation.find({categoryId: {$elemMatch: { $eq: LocalState.get("catId") }}}, {limit:limit}).fetch();
+      onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal,limit});
+    }
+  } else {
+    if (!getAll && Meteor.subscribe("searchCategory", searchItem,searchLanguage,limit).ready() &&
+        Meteor.subscribe("searchTranslation", searchItem,searchLanguage,limit).ready()) {
+        var results = [];
+        var query = {};
+        var l = searchLanguage + ".word";
+        query[l] = {$regex:searchItem,$options:"i"};
+        if (searchItem.length > 0) {
+          wordSelected ?
+            results = Collections.Translation.find(query,{limit:limit}).fetch() :
+            results = Collections.Category.find(query,{limit:limit}).fetch()
+        }
+        onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal,limit});
+    } else if (getAll && Meteor.subscribe("getAllCategory", searchLanguage,limit).ready() &&
+        Meteor.subscribe("getAllTranslation", searchLanguage,limit).ready()) {
+        var results = [];
+        const selector = {};
+        var l = searchLanguage + ".word";
+        var s = {};
+        s[l] = 1;
+        selector["sort"] = s;
+        selector["limit"] = limit;
         wordSelected ?
-          results = Collections.Translation.find(query,{limit:limit}).fetch() :
-          results = Collections.Category.find(query,{limit:limit}).fetch()
-      }
-      wordSelected ? "" : LocalState.get('results') ? results = LocalState.get('results') : ""
-      //results = results.slice(0, limit);
-      onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal,limit});
-  } else if (getAll && Meteor.subscribe("getAllCategory", searchLanguage,limit).ready() &&
-      Meteor.subscribe("getAllTranslation", searchLanguage,limit).ready()) {
-      var results = [];
-      const selector = {};
-      var l = searchLanguage + ".word";
-      var s = {};
-      s[l] = 1;
-      selector["sort"] = s;
-      selector["limit"] = limit;
-      wordSelected ?
-        results = Collections.Translation.find({},selector).fetch() :
-        results = Collections.Category.find({},selector).fetch()
-      wordSelected ? "" : LocalState.get('results') ? results = LocalState.get('results') : ""
-      //results = results.slice(0, limit);
-      onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal,limit});
+          results = Collections.Translation.find({},selector).fetch() :
+          results = Collections.Category.find({},selector).fetch()
+        onData(null, {results,wordSelected,searchItem,searchLanguage,translationLanguages,modal,limit});
+    }
   }
 };
 

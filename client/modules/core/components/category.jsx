@@ -27,8 +27,8 @@ class Category extends React.Component {
   }
 
   showTranslations(){
-    const {translations,updateResults} = this.props;
-    updateResults(translations);
+    const {categoryDetails,updateResults} = this.props;
+    updateResults(categoryDetails._id);
   }
 
   render() {
