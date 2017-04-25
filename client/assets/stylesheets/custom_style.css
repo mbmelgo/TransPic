@@ -122,7 +122,7 @@ div#main-layout {
   width: 80%;
   padding-left: 1%;
   padding-right: 1%;
-  border-radius: 1%;
+  border-radius: 10px;
 }
 
 #innerForbidden {
