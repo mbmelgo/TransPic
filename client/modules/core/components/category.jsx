@@ -32,6 +32,26 @@ class Category extends React.Component {
   }
 
   render() {
+    const {loading} = this.props;
+    if (loading) {
+      return this.renderLoading();
+    } else {
+      return this.renderCategories();
+    }
+  }
+
+  renderLoading(){
+    return(
+      <div className="col-xs-6 col-md-3" >
+        <div className='thumbnail' id="indi">
+          <img className='img-rounded'  id="searchResultsImage" src="/images/loading.gif"/>
+          <div className='caption' id='labelView' > Loading...</div>
+        </div>
+      </div>
+    );
+  }
+
+  renderCategories() {
     const {categoryDetails,selectedLanguage} = this.props;
     if(categoryDetails) {
       return (
@@ -55,10 +75,9 @@ class Category extends React.Component {
           </div>
         </div>
       );
+    } else {
+      return (<div></div>);
     }
-    return (
-      <div></div>
-    )
   }
 }
 
