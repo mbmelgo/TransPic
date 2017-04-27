@@ -66,7 +66,35 @@ class Addtranslation extends React.Component {
     setLanguageSelected(selectLanguage.value);
   }
 
-  render() {
+  render(){
+    const {loading} = this.props;
+    if (loading) {
+      return this.renderLoading()
+    } else {
+      return this.renderMain();
+    }
+  }
+
+  renderLoading(){
+    return (
+      <div id="loading">
+        <div className="sk-wave sk-fade-in sk-spinner">
+          <div className="sk-rect1" ></div>
+          <div className="sk-rect2" ></div>
+          <div className="sk-rect3" ></div>
+          <div className="sk-rect4" ></div>
+          <div className="sk-rect5" ></div>
+          <div className="sk-rect6" ></div>
+          <div className="sk-rect7" ></div>
+          <div className="sk-rect8" ></div>
+          <div className="sk-rect9" ></div>
+          <div className="sk-rect10" ></div>
+        </div>
+      </div>
+    );
+  }
+
+  renderMain() {
     const {allCategory,error,translationLanguages,image, selectLanguage} = this.props;
     return (
       <div id="outer">
@@ -74,7 +102,7 @@ class Addtranslation extends React.Component {
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
-                <img alt="Brand" src="/images/logo.png" id="brandLogo"/>
+                TR<span className="glyphicon glyphicon-picture" aria-hidden="true" id="pic"></span>NSPIC
               </a>
               <button type="button" className="btn btn-success navbar-btn pull-right" id='lgbtn' onClick={this.signout.bind(this)}>LOGOUT</button>
               </div>
@@ -118,7 +146,7 @@ class Addtranslation extends React.Component {
                     <div className="col-sm-12 col-md-12">
                       <h5>Please check atleast 1 category below:</h5>
                       <div className="col-md-12" id="topbar">
-                        <select id='selectLanguage' ref='selectLanguage' className='selectpicker form-control' id='form-control' onChange={this.changeLanguage.bind(this)}>
+                        <select id='selectLanguage' ref='selectLanguage' className='selectpicker form-control' id='form-control' onChange={this.changeLanguage.bind(this)} value={selectLanguage}>
                          {translationLanguages.map(function(language){
                            return <option value={language._id} key={language._id}>{language.name}</option>
                          })}

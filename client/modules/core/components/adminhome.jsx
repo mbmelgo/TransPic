@@ -78,7 +78,7 @@ class Adminhome extends React.Component {
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
-                <img alt="Brand" src="/images/logo.png" id="brandLogo"/>
+                TR<span className="glyphicon glyphicon-picture" aria-hidden="true" id="pic"></span>NSPIC
               </a>
               <button type="button" className="btn btn-success navbar-btn pull-right" id='lgbtn' onClick={this.signout.bind(this)}>LOGOUT</button>
               </div>

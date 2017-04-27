@@ -31,7 +31,7 @@ class Signin extends React.Component {
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
-                <img alt="Brand" src="/images/logo.png" id="brandLogo"/>
+                TR<span className="glyphicon glyphicon-picture" aria-hidden="true" id="pic"></span>NSPIC
               </a>
               <a href="/signin" id="nav-out"><button type="button" className="btn btn-success navbar-btn pull-right" id='lgbtn'>LOGIN</button></a>
               <a href="/translate" id="nav-out"><button type="button" className="btn btn-success navbar-btn pull-right" id='lgbtn'>TRANSLATE</button></a>

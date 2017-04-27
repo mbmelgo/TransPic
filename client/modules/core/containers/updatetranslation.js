@@ -152,6 +152,7 @@ export const composer = ({context, id}, onData) => {
   const image = LocalState.get('imageUpdate');
   const error = LocalState.get('UPDATE_TRANSLATION_ERROR');
   const success = LocalState.get('UPDATE_TRANSLATION_SUCCESS');
+  var loading = true;
   if (Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getSpecificTranslation",id.id).ready()) {
     const trans = Collections.Translation.find({_id:id.id}).fetch();
     const translation = trans[0];
@@ -167,7 +168,10 @@ export const composer = ({context, id}, onData) => {
       }
       const contributor = Meteor.users.find(contributor_id).fetch();
       const cur = Meteor.userId();
-      onData(null, {translation,translationLanguages,contributor,selectedLanguage,cur,image,error,success,allCategory});
+      loading = false;
+      onData(null, {loading,translation,translationLanguages,contributor,selectedLanguage,cur,image,error,success,allCategory});
+    } else {
+      onData(null, {loading});
     }
   }
 };

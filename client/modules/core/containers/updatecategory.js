@@ -152,6 +152,7 @@ export const composer = ({context,id}, onData) => {
   const image = LocalState.get('imageUpdate');
   const error = LocalState.get('UPDATE_CATEGORY_ERROR');
   const success = LocalState.get('UPDATE_CATEGORY_SUCCESS');
+  var loading = true;
   if (Meteor.subscribe("getUser",contributor_id).ready() && Meteor.subscribe("getSpecificCategory",id.id).ready()) {
     const cat = Collections.Category.find({_id:id.id}).fetch();
     const category = cat[0];
@@ -160,7 +161,10 @@ export const composer = ({context,id}, onData) => {
     }
     const contributor = Meteor.users.find(contributor_id).fetch();
     const cur = Meteor.userId();
-    onData(null, {category,translationLanguages,contributor,selectedLanguage,cur,image,error,success});
+    loading = false;
+    onData(null, {loading, category,translationLanguages,contributor,selectedLanguage,cur,image,error,success});
+  } else {
+    onData(null, {loading});
   }
 };
 
