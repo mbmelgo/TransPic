@@ -70,7 +70,7 @@ class Addtranslation extends React.Component {
     const {allCategory,error,translationLanguages,image, selectLanguage} = this.props;
     return (
       <div id="outer">
-        <nav className="navbar navbar-default" >
+        <nav className="navbar" id="navbar">
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
@@ -83,7 +83,7 @@ class Addtranslation extends React.Component {
         <div id="addBox">
           { allCategory.length <= 0 ?
             <div className="panel panel-danger" id="addPopOut">
-              <div className="panel-heading">
+              <div className="panel-heading" id="pHeading">
                 <h3 className="panel-title" id="errorLabelLeft">No Category Available!</h3>
               </div>
               <div className="panel-body" id="errorPanelBody">
@@ -93,7 +93,7 @@ class Addtranslation extends React.Component {
             </div>
           :
             <div className="panel panel-success" id="addPopOut">
-              <div className="panel-heading">
+              <div className="panel-heading" id="pHeading">
                 <h3 className="panel-title">Add New Translation</h3>
               </div>
               <div className="panel-body">

@@ -61,7 +61,7 @@ class Adminhome extends React.Component {
 
   setLimit(){
     const {setLimit,limit} = this.props;
-    setLimit(limit+8);
+    setLimit(limit + 8);
   }
 
   changeLanguageSelected(){
@@ -74,7 +74,7 @@ class Adminhome extends React.Component {
     const {results, wordSelected,searchItem,searchLanguage,translationLanguages, modal, showModal} = this.props;
     return (
       <div id="outer">
-        <nav className="navbar navbar-default" >
+        <nav className="navbar" id="navbar">
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
@@ -90,7 +90,7 @@ class Adminhome extends React.Component {
               <input type="text" className="form-control" placeholder="Search for..." ref="searchItem"/>
               <span className="input-group-btn">
                 <button className="btn btn-default" type="button" onClick={this.searchItem.bind(this)}>
-                  <span className="glyphicon glyphicon-search" aria-hidden="true"> Search</span>
+                  <span className="glyphicon glyphicon-search" aria-hidden="true">Search</span>
                 </button>
               </span>
             </div>

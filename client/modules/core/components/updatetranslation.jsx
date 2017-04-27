@@ -69,7 +69,7 @@ class Updatetranslation extends React.Component {
     const {translation,translationLanguages,selectedLanguage,contributor, cur,image,error,success,allCategory} = this.props;
     return (
       <div id="outer">
-        <nav className="navbar navbar-default" >
+        <nav className="navbar" id="navbar">
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
@@ -82,7 +82,7 @@ class Updatetranslation extends React.Component {
         <div id="addBox">
           <div className="panel panel-success" id="updatePopOut">
             <div className="panel-heading" id="updateHeading">
-              <a className="col-md-5" onClick={this.goBackHome.bind(this)}><span className="glyphicon glyphicon-arrow-left" aria-hidden="true" /></a>
+              <a className="col-md-5" onClick={this.goBackHome.bind(this)}><span className="glyphicon glyphicon-arrow-left" aria-hidden="true" id="back"/></a>
               <h3 className="col-md-7 panel-title" id="labelUpdate">Update Translation</h3>
             </div>
 

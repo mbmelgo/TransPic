@@ -34,6 +34,7 @@ div#main-layout {
   position: absolute;
   height: 100%;
   width: 100%;
+  background-color: #C8C8C8;
 }
 
 #popOut{
@@ -41,10 +42,23 @@ div#main-layout {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+  border-color: #29434e;
+}
+
+#pHeading{
+  border-color: #78909c;
+  background-color: #78909c;
+  color: white;
 }
 
 #nav-header{
   width: 100%;
+}
+
+#navbar{
+  background-color: #29434e;
+  border-color: #29434e;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #nav-out{
@@ -59,12 +73,14 @@ div#main-layout {
 #lgbtn{
   margin-left: 1%;
   border-width: 2px;
-  border-color: black;
+  background-color: #819ca9;
+  border-color: white;
 }
 
 #lgbtn:hover{
   border-width: 2px;
-  border-color: black;
+  border-color: white;
+  background-color: #a7c0cd;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -100,12 +116,18 @@ div#main-layout {
   margin-left: 10px;
   border-width: 2px;
   border-color: black;
+  border-radius: 5px;
+  color: white;
+  background-color: #819ca9;
 }
 
 #btn:hover{
   margin-left: 10px;
   border-width: 2px;
   border-color: black;
+  border-radius: 5px;
+  background-color: #a7c0cd;
+  color: black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -123,15 +145,18 @@ div#main-layout {
   padding-left: 1%;
   padding-right: 1%;
   border-radius: 10px;
+  background-color: white;
 }
 
 #innerForbidden {
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
+  background-color: #C8C8C8;
 }
 
 #forbiddenPanel{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin: auto;
   position: absolute;
   top: 0; left: 0; bottom: 0; right: 0;
@@ -156,15 +181,20 @@ div#main-layout {
 }
 
 #optbtn{
-  border-width: 2px;
-  border-color: black;
+  border-radius: 5px;
   margin-top: 1.5%;
   margin-right: 1.5%;
+  background-color: #819ca9;
+  border-color: black;
+  border-width: 2px;
 }
 
 #optbtn:hover{
-  border-width: 2px;
+  border-radius: 5px;
+  background-color:  #a7c0cd;
   border-color: black;
+  color: black;
+  border-width: 2px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -188,6 +218,7 @@ div#main-layout {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-left: auto;
   margin-right: auto;
+  border-color: #78909c;
   height: 85%;
 }
 
@@ -195,6 +226,7 @@ div#main-layout {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-left: auto;
   margin-right: auto;
+  border-color: #78909c;
 }
 
 #addBox {
@@ -213,6 +245,7 @@ div#main-layout {
 #addbtn:hover{
   border-width: 2px;
   border-color: black;
+  color: black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -270,7 +303,9 @@ div#main-layout {
   border-width: 2px;
   border-color: black;
   display: block;
+  border-radius: 5px;
   margin: auto;
+  background-color: #819ca9;
   width: 25%;
 }
 
@@ -279,8 +314,11 @@ div#main-layout {
   border-width: 2px;
   border-color: black;
   display: block;
+  border-radius: 5px;
   margin: auto;
   width: 25%;
+  color: black;
+  background-color: #a7c0cd;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -289,6 +327,7 @@ div#main-layout {
   border-width: 2px;
   border-color: black;
   display: block;
+  background-color: #819ca9;
   margin: auto;
 }
 
@@ -298,6 +337,8 @@ div#main-layout {
   border-color: black;
   display: block;
   margin: auto;
+  color: black;
+  background-color: #a7c0cd;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -334,7 +375,7 @@ div#main-layout {
 
 #imageThmbnailUpdate:hover {
   border-width: 2px;
-  border-color: black;
+  border-color: #2196F3;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -348,6 +389,9 @@ div#main-layout {
 
 #updateHeading{
   height: 38px;
+  border-color: #78909c;
+  background-color: #78909c;
+  color: white;
 }
 
 #imageT {
@@ -359,7 +403,7 @@ div#main-layout {
 
 #imageThmbnail:hover{
   border-width: 2px;
-  border-color: black;
+  border-color: #2196F3;
   height: 250px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -368,6 +412,7 @@ div#main-layout {
   margin-left: 5%;
   border-width: 2px;
   border-color: black;
+  background-color: #819ca9;
   display: block;
   margin: auto;
   width: 50%;
@@ -380,6 +425,8 @@ div#main-layout {
   display: block;
   margin: auto;
   width: 50%;
+  background-color: #a7c0cd;
+  color: black;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -388,7 +435,7 @@ div#main-layout {
 }
 
 #indi:hover{
-  border-color: black;
+  border-color: #2196F3;
   display: block;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -440,7 +487,7 @@ div#main-layout {
   margin-right: auto;
   margin-left: auto;
   border-width: 2px;
-  border-color: black;
+  border-color: #2196F3;
   display: block;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -473,4 +520,25 @@ div#main-layout {
 
 #showMoreResults{
   margin-bottom: 2%;
+  background-color: #819ca9;
+  border-color: black;
+  border-width: 2px;
+}
+
+#showMoreResults:hover{
+  margin-bottom: 2%;
+  background-color: #a7c0cd;
+  border-color: black;
+  border-width: 2px;
+  color: black;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#back{
+  color: white;
+}
+
+#back:hover{
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

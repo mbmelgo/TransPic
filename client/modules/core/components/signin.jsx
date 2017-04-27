@@ -27,7 +27,7 @@ class Signin extends React.Component {
     const {error} = this.props;
     return (
       <div id="outer">
-        <nav className="navbar navbar-default" >
+        <nav className="navbar" id="navbar">
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
@@ -40,7 +40,7 @@ class Signin extends React.Component {
         </nav>
         <div id="innerSignup">
           <div className="panel panel-success" id="popOut">
-            <div className="panel-heading">
+            <div className="panel-heading" id="pHeading">
               <h3 className="panel-title">ADMIN LOG-IN</h3>
             </div>
               <div className="panel-body">

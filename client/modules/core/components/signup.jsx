@@ -49,7 +49,7 @@ class Signup extends React.Component {
     const {error} = this.props;
     return (
       <div id="outer">
-        <nav className="navbar navbar-default" >
+        <nav className="navbar" id="navbar">
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
@@ -65,7 +65,7 @@ class Signup extends React.Component {
         </nav>
         <div id="innerSignup">
           <div className="panel panel-success" id="popOut">
-            <div className="panel-heading">
+            <div className="panel-heading" id="pHeading">
               <h3 className="panel-title">Register New Admin</h3>
             </div>
               <div className="panel-body">
@@ -118,8 +118,8 @@ class Signup extends React.Component {
                   </fieldset>
                 </form>
                 <div className='signupButtons'><br/><br/><br/><br/><br/>
-                  <button type="button" className="btn btn-success pull-right" id='btn' onClick={this.signupUser.bind(this)}>SUBMIT</button>
-                  <button type="button" className="btn btn-danger pull-right" id='btn' onClick={this.clear.bind(this)}>CLEAR</button>
+                  <button type="button" className="btn pull-right" id='btn' onClick={this.signupUser.bind(this)}>SUBMIT</button>
+                  <button type="button" className="btn pull-right" id='btn' onClick={this.clear.bind(this)}>CLEAR</button>
                 </div>
               </div>
           </div>

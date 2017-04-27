@@ -54,7 +54,7 @@ class Addcategory extends React.Component {
     const {error,translationLanguages,image} = this.props;
     return (
       <div id="outer">
-        <nav className="navbar navbar-default" >
+        <nav className="navbar" id="navbar">
           <div className="container-fluid">
             <div className="navbar-header" id="nav-header">
               <a className="navbar-brand" href="#" id="nav-out">
@@ -66,7 +66,7 @@ class Addcategory extends React.Component {
         </nav>
         <div id="addBox">
           <div className="panel panel-success" id="addPopOut">
-            <div className="panel-heading">
+            <div className="panel-heading" id="pHeading">
               <h3 className="panel-title">Add New Category</h3>
             </div>
             <div className="panel-body">
@@ -108,8 +108,8 @@ class Addcategory extends React.Component {
                 </div>
               </div>
               <br/><br/>
-              <button type="button" className="btn btn-primary navbar-btn pull-right" id='btn' onClick={this.addCategory.bind(this)}>Save</button>
-              <button type="button" className="btn btn-primary navbar-btn pull-right" id='btn' onClick={this.goBackHome.bind(this)}>Cancel</button>
+              <button type="button" className="btn btn-info pull-right" id='btn' onClick={this.addCategory.bind(this)}>Save</button>
+              <button type="button" className="btn btn-info pull-right" id='btn' onClick={this.goBackHome.bind(this)}>Cancel</button>
             </div>
           </div>
         </div>
