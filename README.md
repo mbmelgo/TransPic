@@ -1,8 +1,35 @@
 # TransPic a text-to-image-and-text-translator
 
 ## Description
-A web application that presents another approach to machine translation systems that use Text-to-Image-and-Text approach. The system is just like the usual Text-to-Text systems but with a pictorial output that conveys image representation of the translated text. The system differs from traditional approaches of machine translation because it generates images together with the translated texts, which would allow the users to better understand the translation, thus avoiding misunderstandings and miscommunication. The system for now contains 936 words together with their corresponding images and are categorized into 29 different categories. As of now only English, Filipino and Cebuano Languages are supported.
+A web application that presents another approach to machine translation systems that use Text-to-Image-and-Text approach. The system is just like the usual Text-to-Text systems but with a pictorial output that conveys image representation of the translated text. The system differs from traditional approaches of machine translation because it generates images together with the translated texts, which would allow the users to better understand the translation, thus avoiding misunderstandings and miscommunication. The system for now contains 936 words together with their corresponding images and are categorized into 29 different categories. As of now only English, Filipino and Cebuano Languages are supported. If you want to contribute translation of your language contact me through email, mbmelgo1@up.edu.ph
 
+## Prerequisites (for contributing)
+TransPic Requires these to run:
+  - [NodeJS](https://nodejs.org/en/)
+  - [MeteorJS](https://www.meteor.com/)
+  - [MantraCLi](https://github.com/mantrajs/mantra-cli)
+  - [MongoDB](https://www.mongodb.com/)
+
+## Set-up
+  - Clone or download the repository
+  - Install the dependencies
+  ```sh
+  $ cd TransPic
+  $ npm install 
+  ```
+  - Start the server
+  ```sh
+  $ npm run windows // If you are using Windows
+  $ npm run ubuntu // If you are using Ubuntu
+  ```
+## Restore the database
+  - Copy the "meteor" folder inside the "dump" folder
+  - Paste the "meteor" folder inside the mongo dump folder located in "C:/Program Files/MongoDB/Server/*MongoDB Version*/bin/dump/" for Windows
+  - Open terminal and command promt and go to mongo dump directory and run this
+  ```sh
+  $ mongorestore -h 127.0.0.1 --port 3001 -d meteor dump/meteor
+  ```
+  
 ## Technologies Used
   - MeteorJS
   - ReactJS
