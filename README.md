@@ -3,7 +3,7 @@
 ## Description
 A web application that presents another approach to machine translation systems that use Text-to-Image-and-Text approach. The system is just like the usual Text-to-Text systems but with a pictorial output that conveys image representation of the translated text. The system differs from traditional approaches of machine translation because it generates images together with the translated texts, which would allow the users to better understand the translation, thus avoiding misunderstandings and miscommunication. The system for now contains 936 words together with their corresponding images and are categorized into 29 different categories. As of now only English, Filipino and Cebuano Languages are supported.
 
-## Techonlogies Used
+## Technologies Used
   - MeteorJS
   - ReactJS
   - MongoDB
