@@ -63,6 +63,7 @@ class Signin extends React.Component {
                   </fieldset>
                 </form>
                 <div className='signupButtons'><br/><br/><br/><br/><br/>
+                  <label id='contact'>Want to be a contributor? <a href={"mailto:$mbmelgo1@up.edu.ph?subject=Feedback&body=Message"}>Contact Us!</a></label>
                   <button type="button" className="btn btn-danger pull-right" id='btn' onClick={this.signinUser.bind(this)}>LOGIN</button>
                 </div>
               </div>
