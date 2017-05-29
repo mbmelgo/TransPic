@@ -174,7 +174,7 @@ class Updatetranslation extends React.Component {
                         <input ref={selectedLanguage} name={selectedLanguage} type='text' placeholder={translation[selectedLanguage].word} className='col-md-9 form-control' id='inputUpdate'/>
                       </div>
                       :
-                      <h6 id="labelContact"><a href={`mailto:${contributor[0].profile.email}?subject=Feedback&body=Message`}> {contributor.length > 0 ? "Contact Contributor" : ""}</a></h6>)
+                      <h6 id="labelContact"><a href={`mailto:${contributor[0].profile.email}?subject=Transpic%20Translation%20Feedback&body=Hi%20${contributor[0].profile.firstName}%20${contributor[0].profile.lastName}%0D%0AI%20would%20like%20to%20inform%20you%20that%20the%20translation%20of%20the%20word%20"${translation[selectedLanguage].word}"%20is%20%3Cinsert%20feedback%20here%3E!`}> {contributor.length > 0 ? "Contact Contributor" : ""}</a></h6>)
                   :
                   <input ref={selectedLanguage} name={selectedLanguage} type='text' placeholder='Enter translation and press save!' className='col-md-9 form-control' id='inputUpdate'/>
                 }

@@ -25,6 +25,7 @@ class Signin extends React.Component {
 
   render() {
     const {error} = this.props;
+    const mail = "mbmelgo1@up.edu.ph";
     return (
       <div id="outer">
         <nav className="navbar" id="navbar">
@@ -63,7 +64,7 @@ class Signin extends React.Component {
                   </fieldset>
                 </form>
                 <div className='signupButtons'><br/><br/><br/><br/><br/>
-                  <label id='contact'>Want to be a contributor? <a href={"mailto:$mbmelgo1@up.edu.ph?subject=Feedback&body=Message"}>Contact Us!</a></label>
+                  <label id='contact'>Want to be a contributor? <a href={`mailto:${mail}?subject=Application%20Form&body=First%20Name:%20%0D%0ALast%20Name:%20%0D%0AOrganization:%20%0D%0AOccupation:%20%0D%0AEmail:%20%0D%0A`}>Contact Us!</a></label>
                   <button type="button" className="btn btn-danger pull-right" id='btn' onClick={this.signinUser.bind(this)}>LOGIN</button>
                 </div>
               </div>

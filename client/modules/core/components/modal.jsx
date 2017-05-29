@@ -103,7 +103,7 @@ class Modal extends React.Component {
                 {
                   contributor[0] ?
                     contributor[0]._id == cur ? "":
-                   <h6 id="labelContact"><a href={`mailto:${contributor[0].profile.email}?subject=Feedback&body=Message`}> {contributor.length > 0 ? "Contact Contributor" : ""}</a></h6>:""
+                   <h6 id="labelContact"><a href={`mailto:${contributor[0].profile.email}?subject=Transpic%20Translation%20Feedback&body=Hi%20${contributor[0].profile.firstName}%20${contributor[0].profile.lastName}%0D%0AI%20would%20like%20to%20inform%20you%20that%20the%20translation%20of%20the%20word%20"${content[selectLanguage].word}"%20is%20%3Cinsert%20feedback%20here%3E!`}> {contributor.length > 0 ? "Contact Contributor" : ""}</a></h6>:""
                 }
                 </div>
             </div>
@@ -148,7 +148,7 @@ class Modal extends React.Component {
                 {
                   contributor[0] ?
                   contributor[0]._id == cur ? "":
-                  <h6 id="labelContact"><a href={`mailto:${contributor[0].profile.email}?subject=Feedback&body=Message`}> {contributor.length > 0 ? "Contact Contributor" : ""}</a></h6>:""
+                  <h6 id="labelContact"><a href={`mailto:${contributor[0].profile.email}?subject=Transpic%20Translation%20Feedback&body=Hi%20${contributor[0].profile.firstName}%20${contributor[0].profile.lastName}%0D%0AI%20would%20like%20to%20inform%20you%20that%20the%20translation%20of%20the%20word%20"${content[selectLanguage].word}"%20is%20%3Cinsert%20feedback%20here%3E!`}> {contributor.length > 0 ? "Contact Contributor" : ""}</a></h6>:""
                 }
                 {
                   categories.length > 0 ?
