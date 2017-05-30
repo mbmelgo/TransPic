@@ -70,6 +70,10 @@ class Adminhome extends React.Component {
     changeLanguageSelected(selectLanguage.value);
   }
 
+  redirect(){
+    window.open('http://sclera.be/nl/vzw/home', '_blank');
+  }
+
   render() {
     const {results, wordSelected,searchItem,searchLanguage,translationLanguages, modal, showModal} = this.props;
     return (
@@ -139,6 +143,7 @@ class Adminhome extends React.Component {
           <button type="button" className='btn btn-primary container-fluid col-md-12' id="showMoreResults" onClick={this.setLimit.bind(this)}>Show more</button>
           : ""
         }
+        <div className="col-md-12 col-lg-12" id="labelUpdate">*Note: Some of the images were retrieved from <a target="_blank" onClick={this.redirect.bind(this)}>sclera</a> website</div>
         </div>
         {modal ? <Modal modal={modal}/>: ""}
       </div>
