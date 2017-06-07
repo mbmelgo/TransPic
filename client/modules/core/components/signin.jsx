@@ -25,7 +25,7 @@ class Signin extends React.Component {
 
   render() {
     const {error} = this.props;
-    const mail = "mbmelgo1@up.edu.ph";
+    const mail = "mbmelgo1@up.edu.ph; robert.roxas@up.edu.ph";
     return (
       <div id="outer">
         <nav className="navbar" id="navbar">
